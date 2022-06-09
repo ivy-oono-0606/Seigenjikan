@@ -1,15 +1,22 @@
 package com.example.seigenjikan
 
 import android.os.Bundle
-import android.support.wearable.activity.WearableActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.example.seigenjikan.databinding.ActivitySubBinding
 
-class SubActivity : WearableActivity() {
+class SubActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySubBinding
+    private lateinit var timer: TimerFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sub)
+        binding = ActivitySubBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Enables Always-on
-        setAmbientEnabled()
+        timer = TimerFragment()
+        supportFragmentManager.beginTransaction().apply{
+            replace(R.id.TimerFrame, timer)
+            commit()
+        }
     }
 }
