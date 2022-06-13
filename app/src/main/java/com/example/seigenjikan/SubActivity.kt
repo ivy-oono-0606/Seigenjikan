@@ -13,10 +13,43 @@ class SubActivity : AppCompatActivity() {
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //ここからタイマー表示
         timer = TimerFragment()
         supportFragmentManager.beginTransaction().apply{
             replace(R.id.TimerFrame, timer)
             commit()
         }
+        //ここまでタイマー表示
+
+        //ここからボタン判定
+        fun hanntei(hand:Int){
+            var test : Int = 0
+            if (test == hand) {
+                //正解
+            }else {
+                //不正解
+            }
+        }
+        //ここまでボタン判定
+
+        //赤ボタン
+        binding.RedButton.setOnClickListener{
+            hanntei(0)
+        }
+        //赤ボタンここまで
+
+        //青ボタン
+        binding.BlueButton.setOnClickListener{
+            hanntei(1)
+        }
+        //青ボタンここまで
+
+        //緑ボタン
+        binding.GreenButton.setOnClickListener{
+            hanntei(2)
+        }
+        //緑ボタンここまで
+
+
     }
 }
