@@ -7,6 +7,7 @@ import com.example.seigenjikan.databinding.ActivitySubBinding
 class SubActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySubBinding
     private lateinit var timer: TimerFragment
+    private lateinit var batle: BattleFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,8 +16,10 @@ class SubActivity : AppCompatActivity() {
 
         //ここからタイマー表示
         timer = TimerFragment()
+        batle = BattleFragment()
         supportFragmentManager.beginTransaction().apply{
             replace(R.id.TimerFrame, timer)
+            replace(R.id.BattleFrame,batle)
             commit()
         }
         //ここまでタイマー表示

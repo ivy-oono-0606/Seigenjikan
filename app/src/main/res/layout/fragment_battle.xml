@@ -19,9 +19,8 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        tools:src="@tools:sample/avatars" />
+        app:srcCompat="@drawable/doragon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
