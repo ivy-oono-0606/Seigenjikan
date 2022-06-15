@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/NpcLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NPCFragment">
+
+    <ImageView
+        android:id="@+id/BoukenkaImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="490dp"
+        android:src="@drawable/hourousya"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SerihuTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/SerihuTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="俺の名前は○○。この先には○○がいる。 もしあいつを倒そうと思っているなら俺がアドバイスしてやるよ。 奴の弱点は○○だ、これまでいろんなやつが挑んだが3回の攻撃じゃ倒れない。 ○○は効くがあまりダメージは見込めないかもな。しかし、弱点攻撃と組み合わせれば効くかもしれないな だが、この攻撃も１回だけじゃだめだ。２回は攻撃しないとな。 それと、○○は効かないから気を付けろよ。 "
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/NpcNextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@color/material_on_surface_emphasis_medium"
+        android:text="次へ進む"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
