@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/BoukenkaImageView"
         android:layout_width="wrap_content"
-        android:layout_height="490dp"
+        android:layout_height="495dp"
         android:src="@drawable/hourousya"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,16 +31,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/NpcNextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@color/material_on_surface_emphasis_medium"
-        android:text="次へ進む"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
