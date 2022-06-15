@@ -18,7 +18,7 @@ class Clear : AppCompatActivity() {
     }
 
     fun onTitleButtonTapped() {
-        val intent = Intent(this, GameOver::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 }
