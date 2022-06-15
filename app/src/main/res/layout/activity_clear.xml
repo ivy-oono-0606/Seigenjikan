@@ -14,7 +14,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
@@ -24,22 +24,25 @@
         android:id="@+id/ClearText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="serif"
         android:text="CLEAR"
         android:textSize="110sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/TitleButton1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="153dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/TitleButton1"
         android:layout_width="167dp"
         android:layout_height="56dp"
+        android:layout_marginBottom="70dp"
         android:backgroundTint="#0240F8"
         android:text="タイトルに戻る"
+        app:layout_constraintBottom_toBottomOf="@+id/skyback"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="565dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
