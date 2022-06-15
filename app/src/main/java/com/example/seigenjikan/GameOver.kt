@@ -19,7 +19,7 @@ class GameOver : AppCompatActivity() {
     }
 
     fun onTitleButtonTapped() {
-        val intent = Intent(this, Clear::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 }
