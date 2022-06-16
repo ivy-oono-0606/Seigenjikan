@@ -10,6 +10,7 @@ class SubActivity : AppCompatActivity() {
     //private lateinit var timer: TimerFragment
     private lateinit var batle: BattleFragment
     private lateinit var NPC: NPCFragment
+    var TimeFinis:Long = 0
 
     //ここからタイマー定義
     inner class MyCountDownTimer(
@@ -17,7 +18,7 @@ class SubActivity : AppCompatActivity() {
             countDownInterval: Long
     ) : CountDownTimer(millisInFuture, countDownInterval) {
         var isRunning = false
-
+        //TimeFinis = millisUntilFinished
         override fun onTick(millisUntilFinished: Long) {
             val minute = millisUntilFinished / 1000L / 60L
             val second = millisUntilFinished / 1000L % 60L
@@ -35,9 +36,9 @@ class SubActivity : AppCompatActivity() {
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var sikai = IntArray(3)
-        sikai += 20
-        //var sikaillen = sikai.size
+        //var sikai = IntArray(3,{ 10 * (it + 1) })
+        var sikai = arrayOf(0,1,2)
+        var sikaillen = sikai.size
 
 
         //ここからタイマーフラグメント、バトルフラグメント表示
@@ -53,7 +54,7 @@ class SubActivity : AppCompatActivity() {
 
         //ここからタイマー操作
         binding.timerText.text = "3:00"
-        var timer = MyCountDownTimer(3 * 60 * 1000, 100)
+        var timer = MyCountDownTimer((3 * 60) * 1000, 100)
         binding.testbutton.setOnClickListener {
             timer.isRunning = when (timer.isRunning) {
                 true -> {
@@ -72,17 +73,29 @@ class SubActivity : AppCompatActivity() {
 
         //ここからボタン判定
         for(i in sikai){
-            binding.timerText.text = sikai[3].toString()
+            binding.timerText.text = sikai[0].toString()
         }
         fun hanntei(hand: Int){
-            var test : Int = 0
-            if (test == hand) {
-                //正解
+            sikaillen
+            var count : Int = 0
+            if (sikai[count] == hand) {
+                binding.timerText.text = "正解"
             }else {
-                //不正解
+                //binding.timerText.text = "不正解"
+
             }
         }
         //ここまでボタン判定
+
+
+        //メニューボタン
+        binding.titleButton.setOnClickListener{
+            supportFragmentManager.beginTransaction().apply{
+                replace(R.id.BattleFrame, batle)
+                commit()
+            }
+        }
+        //メニューボタンここまで
 
         //赤ボタン
         binding.RedButton.setOnClickListener{
@@ -105,7 +118,5 @@ class SubActivity : AppCompatActivity() {
             hanntei(2)
         }
         //緑ボタンここまで
-
-
     }
 }
