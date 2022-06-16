@@ -8,25 +8,10 @@
     tools:context=".NPCFragment">
 
     <ImageView
-        android:id="@+id/BoukenkaImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="495dp"
-        android:src="@drawable/hourousya"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SerihuTextView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/SerihuTextView"
+        android:id="@+id/SerihuHaikeiImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="俺の名前は○○。この先には○○がいる。 もしあいつを倒そうと思っているなら俺がアドバイスしてやるよ。 奴の弱点は○○だ、これまでいろんなやつが挑んだが3回の攻撃じゃ倒れない。 ○○は効くがあまりダメージは見込めないかもな。しかし、弱点攻撃と組み合わせれば効くかもしれないな だが、この攻撃も１回だけじゃだめだ。２回は攻撃しないとな。 それと、○○は効かないから気を付けろよ。 "
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:src="@drawable/serihuhaikei"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +26,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/NpcImageView"
+        android:layout_width="377dp"
+        android:layout_height="333dp"
+        android:src="@drawable/hourousya"
+        app:layout_constraintBottom_toTopOf="@+id/NextImageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SerihuHaikeiImageView" />
+
     <TextView
         android:id="@+id/NextTextView"
         android:layout_width="wrap_content"
@@ -53,5 +48,19 @@
         app:layout_constraintEnd_toEndOf="@+id/NextImageButton"
         app:layout_constraintStart_toStartOf="@+id/NextImageButton"
         app:layout_constraintTop_toTopOf="@+id/NextImageButton" />
+
+    <TextView
+        android:id="@+id/SerihuTextView"
+        android:layout_width="360dp"
+        android:layout_height="262dp"
+        android:text="俺の名前は○○。この先には○○がいる。 もしあいつを倒そうと思っているなら俺がアドバイスしてやるよ。 奴の弱点は○○だ、これまでいろんなやつが挑んだが3回の攻撃じゃ倒れない。 ○○は効くがあまりダメージは見込めないかもな。しかし、弱点攻撃と組み合わせれば効くかもしれないな だが、この攻撃も１回だけじゃだめだ。２回は攻撃しないとな。 それと、○○は効かないから気を付けろよ。"
+        android:textColor="#5E3D0C"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/SerihuHaikeiImageView"
+        app:layout_constraintEnd_toEndOf="@+id/SerihuHaikeiImageView"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toStartOf="@+id/SerihuHaikeiImageView"
+        app:layout_constraintTop_toTopOf="@+id/SerihuHaikeiImageView"
+        app:layout_constraintVertical_bias="0.39" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
