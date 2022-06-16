@@ -8,7 +8,7 @@
     tools:context=".TimerFragment">
 
     <TextView
-        android:id="@+id/timerText"
+        android:id="@+id/timerText2"
         android:layout_width="300dp"
         android:layout_height="0dp"
         android:text="3:00"
@@ -23,8 +23,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/timerText"
-        app:layout_constraintEnd_toStartOf="@+id/timerText"
+        app:layout_constraintBottom_toBottomOf="@+id/timerText2"
+        app:layout_constraintEnd_toStartOf="@+id/timerText2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

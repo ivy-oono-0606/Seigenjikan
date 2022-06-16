@@ -9,6 +9,27 @@
     tools:context=".SubActivity"
     tools:deviceIds="wear">
 
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:text="3:00"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/titleButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="メニュー"
+        app:layout_constraintBottom_toBottomOf="@+id/timerText"
+        app:layout_constraintEnd_toStartOf="@+id/timerText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/RedButton"
         android:layout_width="130dp"
@@ -46,23 +67,21 @@
         app:layout_constraintStart_toEndOf="@+id/BlueButton" />
 
     <FrameLayout
-        android:id="@+id/TimerFrame"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
-    <FrameLayout
         android:id="@+id/BattleFrame"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/BlueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TimerFrame">
+        app:layout_constraintTop_toBottomOf="@+id/timerText">
 
     </FrameLayout>
+
+    <Button
+        android:id="@+id/testbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
