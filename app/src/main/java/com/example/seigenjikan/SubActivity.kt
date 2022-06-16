@@ -9,6 +9,7 @@ class SubActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySubBinding
     //private lateinit var timer: TimerFragment
     private lateinit var batle: BattleFragment
+    private lateinit var NPC: NPCFragment
 
     //ここからタイマー定義
     inner class MyCountDownTimer(
@@ -42,6 +43,7 @@ class SubActivity : AppCompatActivity() {
         //ここからタイマーフラグメント、バトルフラグメント表示
         //timer = TimerFragment()
         batle = BattleFragment()
+        NPC = NPCFragment()
         supportFragmentManager.beginTransaction().apply{
             //replace(R.id.TimerFrame, timer)
             replace(R.id.BattleFrame, batle)
@@ -91,6 +93,10 @@ class SubActivity : AppCompatActivity() {
         //青ボタン
         binding.BlueButton.setOnClickListener{
             hanntei(1)
+            supportFragmentManager.beginTransaction().apply{
+                replace(R.id.BattleFrame, NPC)
+                commit()
+            }
         }
         //青ボタンここまで
 
