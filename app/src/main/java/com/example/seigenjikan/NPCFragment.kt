@@ -1,17 +1,14 @@
 package com.example.seigenjikan
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.R
 import android.os.Bundle
-import android.widget.Button
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.seigenjikan.databinding.ActivityMainBinding
-import com.example.seigenjikan.databinding.ActivitySubBinding
+import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import com.example.seigenjikan.databinding.FragmentNPCBinding
+
 
 class NPCFragment : Fragment() {
     private var _binding: FragmentNPCBinding? = null
@@ -20,6 +17,7 @@ class NPCFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //setContentView(R.layout.fragment_n_p_c)
 
     }
 
@@ -28,8 +26,10 @@ class NPCFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentNPCBinding.inflate(inflater, container, false)
         binding.NextImageButton.setOnClickListener{
-            val intent = Intent(activity, SubActivity::class.java)
-            startActivity(intent)
+//            val myImage: ImageView = findViewById(R.id.NpcImageView)
+//            myImage.setImageResource(R.drawable.mobu)
+//            val intent = Intent(activity, SubActivity::class.java)
+//            startActivity(intent)
         }
         return binding.root
     }
