@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/TitleButton1"
+        android:id="@+id/titleButton3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Button"
