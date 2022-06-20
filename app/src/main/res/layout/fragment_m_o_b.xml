@@ -41,7 +41,7 @@
 
     <ImageView
         android:id="@+id/MobImageView"
-        android:layout_width="337dp"
+        android:layout_width="377dp"
         android:layout_height="333dp"
         android:src="@drawable/mobu"
         app:layout_constraintBottom_toTopOf="@+id/Next2ImageButton"
