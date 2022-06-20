@@ -8,7 +8,7 @@
     tools:context=".NPCFragment">
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/HaikeiImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
