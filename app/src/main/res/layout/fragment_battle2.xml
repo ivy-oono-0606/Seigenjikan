@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Battle2FrameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Battle2Fragment">
+
+    <ImageView
+        android:id="@+id/Enemy2ImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:src="@drawable/test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/QuestionImageView"
+        android:layout_width="410dp"
+        android:layout_height="190dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/serihuhaikei"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Enemy2ImageView" />
+
+    <TextView
+        android:id="@+id/QuestionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="問題"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/QuestionImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/QuestionImageView"
+        app:layout_constraintTop_toBottomOf="@+id/Enemy2ImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
