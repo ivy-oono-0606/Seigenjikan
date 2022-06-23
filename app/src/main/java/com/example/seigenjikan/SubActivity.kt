@@ -13,8 +13,12 @@ class SubActivity : AppCompatActivity(){
     private lateinit var timerF: TimerFragment
     private lateinit var batle: BattleFragment
     private lateinit var batle2: Battle2Fragment
+    private lateinit var Command3: Command3Fragment
+    private lateinit var Command5: Command5Fragment
     var minute:Long = 0
     var second:Long = 0
+    var sikai = arrayOf(1, 2, 3)
+    var sikaillen = sikai.size
 
     //ここからタイマー定義
     inner class MyCountDownTimer(
@@ -34,7 +38,7 @@ class SubActivity : AppCompatActivity(){
     //ここまでタイマー定義
 
     //フラグメントへ値を渡せます
-    fun getItem(position: String,com:Int): Fragment? {
+    fun getItem(position: String,com:Int): Pair<Fragment?,Fragment?> {
         // Bundle（オブジェクトの入れ物）のインスタンスを作成する
         val bundle = Bundle()
         // Key/Pairの形で値をセットする
@@ -43,8 +47,13 @@ class SubActivity : AppCompatActivity(){
         bundle.putInt("KEY_POSITION2", com)
         // Fragmentに値をセットする
         batle.setArguments(bundle)
+        Command3.setArguments(bundle)
+        if (sikaillen == 3){
+            return Pair(batle,Command3)
+        }else{
+            return Pair(batle,Command5)
+        }
 
-        return batle
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,15 +61,15 @@ class SubActivity : AppCompatActivity(){
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var sikai = arrayOf(1, 2, 3, 1, 2)
-        var sikaillen = sikai.size
-
         //ここからタイマーフラグメント、バトルフラグメント表示
         timerF = TimerFragment()
         batle = BattleFragment()
         batle2 = Battle2Fragment()
+        Command3 =  Command3Fragment()
+        Command5 =  Command5Fragment()
         supportFragmentManager.beginTransaction().apply{
-            replace(R.id.BattleFrame, batle)
+            replace(R.id.BatleFrame, batle)
+            add(R.id.BatleFrame, Command3)
             addToBackStack("batle")
             //敵初期設定
             getItem("doragon",123)
@@ -105,11 +114,12 @@ class SubActivity : AppCompatActivity(){
                 if (count==sikaillen){
                     count = 0
                     //敵設置
-                    getItem("goburin",1)
+                    getItem("goburin",32112)
                     //再表示
                     supportFragmentManager.beginTransaction().apply{
-                        replace(R.id.BattleFrame, timerF)
-                        replace(R.id.BattleFrame, batle)
+                        replace(R.id.BatleFrame, timerF)
+                        replace(R.id.BatleFrame, batle)
+                        add(R.id.BatleFrame, Command5)
                         commit()
                     }
                 }
@@ -125,7 +135,7 @@ class SubActivity : AppCompatActivity(){
         //メニューボタン
         binding.titleButton.setOnClickListener{
             supportFragmentManager.beginTransaction().apply{
-                replace(R.id.BattleFrame, batle2)
+                replace(R.id.BatleFrame, batle2)
                 commit()
             }
         }
