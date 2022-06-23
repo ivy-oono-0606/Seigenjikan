@@ -19,15 +19,16 @@ class Command5Fragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentCommand5Binding.inflate(inflater, container, false)
-        var com :Int = 0
+        var com :ArrayList<Int> = arrayListOf()
         // Bundleを取得する
         val bundle = arguments
         // Bundleがセットされていたら値を受け取る
         if (bundle != null) {
-            com = bundle.getInt("KEY_POSITION2")
+            com = bundle.getIntegerArrayList("KEY_POSITION2") as ArrayList<Int>
         }
 
         val packageName = BuildConfig.APPLICATION_ID
+
         fun comin(com:Int):Int{
             var imageId:Int = 0
             if (com == 1){
@@ -39,11 +40,28 @@ class Command5Fragment : Fragment() {
             }
             return imageId
         }
-        binding.com51.setImageResource(comin(com/10000))
-        binding.com52.setImageResource(comin(com%10000/1000))
-        binding.com53.setImageResource(comin(com%10000%1000/100))
-        binding.com54.setImageResource(comin(com%10000%1000%100/10))
-        binding.com55.setImageResource(comin(com%10000%1000%100%10))
+
+        var i = 0
+
+        fun imagein(com:Int){
+            if (i == 0){
+                binding.com51.setImageResource(comin(com))
+            }else if (i == 1){
+                binding.com52.setImageResource(comin(com))
+            }else if(i == 2){
+                binding.com53.setImageResource(comin(com))
+            }else if (i ==3){
+                binding.com54.setImageResource(comin(com))
+            }else if (i == 4){
+                binding.com55.setImageResource(comin(com))
+            }
+        }
+
+        while (i < com.size) {
+            imagein(com[i])
+            i += 1
+        }
+
         return binding.root
     }
 

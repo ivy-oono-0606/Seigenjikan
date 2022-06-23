@@ -18,15 +18,16 @@ class Command3Fragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentCommand3Binding.inflate(inflater, container, false)
-        var com :Int = 0
+        var com :ArrayList<Int> = arrayListOf()
         // Bundleを取得する
         val bundle = arguments
         // Bundleがセットされていたら値を受け取る
         if (bundle != null) {
-            com = bundle.getInt("KEY_POSITION2")
+            com = bundle.getIntegerArrayList("KEY_POSITION2") as ArrayList<Int>
         }
 
         val packageName = BuildConfig.APPLICATION_ID
+
         fun comin(com:Int):Int{
             var imageId:Int = 0
             if (com == 1){
@@ -38,9 +39,24 @@ class Command3Fragment : Fragment() {
             }
             return imageId
         }
-        binding.com31.setImageResource(comin(com/100))
-        binding.com32.setImageResource(comin(com%100/10))
-        binding.com33.setImageResource(comin(com%100%10))
+
+        var i = 0
+
+        fun imagein(com:Int){
+            if (i == 0){
+                binding.com31.setImageResource(comin(com))
+            }else if (i == 1){
+                binding.com32.setImageResource(comin(com))
+            }else if(i == 2){
+                binding.com33.setImageResource(comin(com))
+            }
+        }
+
+        while (i < com.size) {
+            imagein(com[i])
+            i += 1
+        }
+
         return binding.root
     }
 

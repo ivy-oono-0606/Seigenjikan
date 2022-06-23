@@ -7,18 +7,19 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.seigenjikan.databinding.ActivitySubBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SubActivity : AppCompatActivity(){
     private lateinit var binding: ActivitySubBinding
     private lateinit var timerF: TimerFragment
     private lateinit var batle: BattleFragment
-    private lateinit var batle2: Battle2Fragment
+
     private lateinit var Command3: Command3Fragment
     private lateinit var Command5: Command5Fragment
     var minute:Long = 0
     var second:Long = 0
-    var sikai = arrayOf(1, 2, 3)
-    var sikaillen = sikai.size
+    //var sikai: ArrayList<Int> = arrayListOf(1,2,3)
 
     //ここからタイマー定義
     inner class MyCountDownTimer(
@@ -38,22 +39,22 @@ class SubActivity : AppCompatActivity(){
     //ここまでタイマー定義
 
     //フラグメントへ値を渡せます
-    fun getItem(position: String,com:Int): Pair<Fragment?,Fragment?> {
+    fun getItem(position: String, com: ArrayList<Int>, Siz:Int): Pair<Fragment?, Fragment?> {
         // Bundle（オブジェクトの入れ物）のインスタンスを作成する
         val bundle = Bundle()
         // Key/Pairの形で値をセットする
         bundle.putString("KEY_POSITION", position)
         //現在未使用
-        bundle.putInt("KEY_POSITION2", com)
+        bundle.putIntegerArrayList("KEY_POSITION2", com)
         // Fragmentに値をセットする
         batle.setArguments(bundle)
-        Command3.setArguments(bundle)
-        if (sikaillen == 3){
-            return Pair(batle,Command3)
+        if (Siz == 3){
+            Command3.setArguments(bundle)
+            return Pair(batle, Command3)
         }else{
-            return Pair(batle,Command5)
+            Command5.setArguments(bundle)
+            return Pair(batle, Command5)
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,10 +62,15 @@ class SubActivity : AppCompatActivity(){
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //sikai = arrayListOf(1,2,3)
+        var Enemy = arrayOf("suraimu","goburin")
+        var sikai = arrayOf(arrayListOf(1,2,3),arrayListOf(3,3,2,1,2))
+        var SikaiY :Int = 0
+
         //ここからタイマーフラグメント、バトルフラグメント表示
         timerF = TimerFragment()
         batle = BattleFragment()
-        batle2 = Battle2Fragment()
+
         Command3 =  Command3Fragment()
         Command5 =  Command5Fragment()
         supportFragmentManager.beginTransaction().apply{
@@ -72,7 +78,7 @@ class SubActivity : AppCompatActivity(){
             add(R.id.BatleFrame, Command3)
             addToBackStack("batle")
             //敵初期設定
-            getItem("doragon",123)
+            getItem(Enemy[SikaiY], sikai[SikaiY],sikai[SikaiY].size)
             commit()
         }
         //ここまでタイマーフラグメント、バトルフラグメント表示
@@ -106,22 +112,30 @@ class SubActivity : AppCompatActivity(){
         //ここまでNPC表示
 
         //ここからボタン判定
-        var count : Int = 0
+        var SikaiX : Int = 0
         fun hanntei(hand: Int){
-            if (sikai[count] == hand) {
+            if (sikai[SikaiY][SikaiX] == hand) {
                 binding.timerText.text = "正解"
-                count++
-                if (count==sikaillen){
-                    count = 0
+                SikaiX++
+                if (SikaiX==sikai[SikaiY].size){
+                    SikaiX = 0
                     //敵設置
-                    getItem("goburin",32112)
-                    //再表示
-                    supportFragmentManager.beginTransaction().apply{
-                        replace(R.id.BatleFrame, timerF)
-                        replace(R.id.BatleFrame, batle)
-                        add(R.id.BatleFrame, Command5)
-                        commit()
+                    SikaiY++
+                    if (SikaiY >1){
+                        SikaiY = 0
                     }
+                    getItem(Enemy[SikaiY], sikai[SikaiY],sikai[SikaiY].size)
+                    //再表示
+                        supportFragmentManager.beginTransaction().apply{
+                            replace(R.id.BatleFrame, timerF)
+                            replace(R.id.BatleFrame, batle)
+                            if (sikai[SikaiY].size == 3){
+                                add(R.id.BatleFrame, Command3)
+                            }else if (sikai[SikaiY].size == 5){
+                                add(R.id.BatleFrame, Command5)
+                            }
+                            commit()
+                        }
                 }
             }else {
                 //binding.timerText.text = "不正解"
@@ -135,7 +149,7 @@ class SubActivity : AppCompatActivity(){
         //メニューボタン
         binding.titleButton.setOnClickListener{
             supportFragmentManager.beginTransaction().apply{
-                replace(R.id.BatleFrame, batle2)
+                replace(R.id.BatleFrame, timerF)
                 commit()
             }
         }
