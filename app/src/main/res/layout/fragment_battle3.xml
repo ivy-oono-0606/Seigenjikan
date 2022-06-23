@@ -2,19 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Battle2FrameLayout"
+    android:id="@+id/Battle3FrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Battle2Fragment">
+    tools:context=".Battle3Fragment">
 
     <ImageView
-        android:id="@+id/Enemy2ImageView"
+        android:id="@+id/Enemy3ImageView"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
         android:src="@drawable/test"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/doragon" />
 
     <ImageView
         android:id="@+id/QuestionImageView"
@@ -25,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Enemy2ImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/Enemy3ImageView" />
 
     <TextView
         android:id="@+id/QuestionTextView"
@@ -37,6 +38,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/QuestionImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/QuestionImageView"
-        app:layout_constraintTop_toBottomOf="@+id/Enemy2ImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/Enemy3ImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
