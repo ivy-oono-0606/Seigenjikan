@@ -26,7 +26,7 @@
         app:srcCompat="@drawable/doragon" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/com3.1"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/button"
@@ -35,17 +35,17 @@
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/com3.2"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/button"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/com3.3"
+        app:layout_constraintStart_toEndOf="@+id/com3.1"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/com3.3"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/button"

@@ -12,6 +12,7 @@ class SubActivity : AppCompatActivity(){
     private lateinit var binding: ActivitySubBinding
     private lateinit var timerF: TimerFragment
     private lateinit var batle: BattleFragment
+    private lateinit var batle2: Battle2Fragment
     var minute:Long = 0
     var second:Long = 0
 
@@ -33,13 +34,13 @@ class SubActivity : AppCompatActivity(){
     //ここまでタイマー定義
 
     //フラグメントへ値を渡せます
-    fun getItem(position: String,del:Int): Fragment? {
+    fun getItem(position: String,com:Int): Fragment? {
         // Bundle（オブジェクトの入れ物）のインスタンスを作成する
         val bundle = Bundle()
         // Key/Pairの形で値をセットする
         bundle.putString("KEY_POSITION", position)
         //現在未使用
-        bundle.putInt("KEY_POSITION2", del)
+        bundle.putInt("KEY_POSITION2", com)
         // Fragmentに値をセットする
         batle.setArguments(bundle)
 
@@ -57,11 +58,12 @@ class SubActivity : AppCompatActivity(){
         //ここからタイマーフラグメント、バトルフラグメント表示
         timerF = TimerFragment()
         batle = BattleFragment()
+        batle2 = Battle2Fragment()
         supportFragmentManager.beginTransaction().apply{
             replace(R.id.BattleFrame, batle)
             addToBackStack("batle")
             //敵初期設定
-            getItem("doragon",0)
+            getItem("doragon",123)
             commit()
         }
         //ここまでタイマーフラグメント、バトルフラグメント表示
@@ -123,7 +125,7 @@ class SubActivity : AppCompatActivity(){
         //メニューボタン
         binding.titleButton.setOnClickListener{
             supportFragmentManager.beginTransaction().apply{
-                replace(R.id.BattleFrame, timerF)
+                replace(R.id.BattleFrame, batle2)
                 commit()
             }
         }

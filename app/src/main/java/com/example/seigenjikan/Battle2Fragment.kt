@@ -33,7 +33,7 @@ class Battle2Fragment : Fragment() {
         }
         //packageName取得
         val packageName = BuildConfig.APPLICATION_ID
-        val imageId = resources.getIdentifier(position, "drawable", packageName) //リソースIDのを取得
+        val imageId = resources.getIdentifier("test", "drawable", packageName) //リソースIDのを取得
 
         binding.Enemy2ImageView.setImageResource(imageId)
 
