@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.seigenjikan.databinding.FragmentBattle2Binding
-import com.example.seigenjikan.databinding.FragmentBattleBinding
+import com.example.seigenjikan.databinding.FragmentBattle5Binding
 
 
-class Battle2Fragment : Fragment() {
-    private var _binding: FragmentBattle2Binding? = null
+class Battle5Fragment : Fragment() {
+    private var _binding: FragmentBattle5Binding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,7 @@ class Battle2Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBattle2Binding.inflate(inflater, container, false)
+        _binding = FragmentBattle5Binding.inflate(inflater, container, false)
 
         var position:String? = ""
         // Bundleを取得する
@@ -35,7 +34,7 @@ class Battle2Fragment : Fragment() {
         val packageName = BuildConfig.APPLICATION_ID
         val imageId = resources.getIdentifier(position, "drawable", packageName) //リソースIDのを取得
 
-        binding.Enemy2ImageView.setImageResource(imageId)
+        binding.Enemy5ImageView.setImageResource(imageId)
 
         return binding.root
     }
