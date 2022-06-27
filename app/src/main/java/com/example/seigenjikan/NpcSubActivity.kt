@@ -26,10 +26,10 @@ class NpcSubActivity : AppCompatActivity() {
                 count = count + 1
             }
 
-            if (count == 1){
+            /*if (count == 1){
                 replace(R.id.HaikeiFrame, MOB)
                 commit()
-            }
+            }*/
 
         }
     }

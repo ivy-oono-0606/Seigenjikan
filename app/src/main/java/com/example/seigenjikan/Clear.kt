@@ -11,7 +11,6 @@ class Clear : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityClearBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setContentView(R.layout.activity_clear)
 
         binding.TitleButton1.setOnClickListener{ onTitleButtonTapped() }
 
@@ -21,4 +20,6 @@ class Clear : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
+    override fun onBackPressed() {}
 }
