@@ -1,5 +1,7 @@
 package com.example.seigenjikan
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +30,16 @@ class MOBFragment : Fragment() {
 //            val intent = Intent(activity, SubActivity::class.java)
 //            startActivity(intent)
         }
+
+        val inflateX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.9f, 0.87f)
+        val inflateY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.9f, 0.87f)
+        val animator = ObjectAnimator.ofPropertyValuesHolder(binding.MobImageView, inflateX, inflateY).apply {
+            duration = 1500
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }
+        animator.start()
+
         return binding.root
     }
 

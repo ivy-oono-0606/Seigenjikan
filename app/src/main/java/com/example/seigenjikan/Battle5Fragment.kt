@@ -1,5 +1,7 @@
 package com.example.seigenjikan
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,6 +37,15 @@ class Battle5Fragment : Fragment() {
         val imageId = resources.getIdentifier(position, "drawable", packageName) //リソースIDのを取得
 
         binding.Enemy5ImageView.setImageResource(imageId)
+
+        val inflateX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.9f, 0.87f)
+        val inflateY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.9f, 0.87f)
+        val animator = ObjectAnimator.ofPropertyValuesHolder(binding.Enemy5ImageView, inflateX, inflateY).apply {
+            duration = 1500
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }
+        animator.start()
 
         return binding.root
     }
