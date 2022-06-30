@@ -21,12 +21,27 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
     var minute:Long = 0
     var second:Long = 0
 
-    //現在配列最大数７（適宜変える）
-    private val fragmentflag = arrayOf(0, 0, 1, 2, 2, 1,2);//呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２
-    private val enemy = arrayOf("suraimu", "goburin", "hourousya","doragon" ,"test","mobu","maou")//敵とNPCの画像
-    private val sikai = arrayOf(arrayListOf(1, 2, 3), arrayListOf(3, 3, 2, 1, 2),arrayListOf(), arrayListOf(2, 3, 1, 1, 3), arrayListOf(3, 2, 2, 2, 1),arrayListOf(), arrayListOf(3, 2, 2, 2, 1))//正解コマンド
-    private val back = arrayOf("mori","doukutu","tosi","tosi","jyounai","jyounai","gyokuza")//背景画像
-    private val text = arrayOf("","","","ドラゴン2, 3, 1, 1, 3","騎士3, 2, 2, 2, 1","","魔王3, 2, 2, 2, 1")//表示テキスト
+    //現在配列最大数8（適宜変える）
+    private val fragmentflag = arrayOf(0, 0, 1, 2, 2, 1,1,2);//呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２
+    private val enemy = arrayOf("suraimu", "goburin", "hourousya","doragon" ,"test","mobu","mobu","maou")//敵とNPCの画像
+    private val sikai = arrayOf(arrayListOf(1, 2, 3), arrayListOf(3, 3, 2, 1, 2),arrayListOf(), arrayListOf(2, 1, 2, 1, 2), arrayListOf(3),arrayListOf(), arrayListOf(),arrayListOf(1, 3, 2,3,1))//正解コマンド
+    private val back = arrayOf("mori","doukutu","tosi","tosi","jyounai","jyounai","jyounai","gyokuza")//背景画像
+    private val text = arrayOf("",
+            "",
+            "俺の名前はグラン。この先にはワイバーンがいる。 もしあいつを倒そうと思っているなら俺がアドバイスしてやるよ。\n" +
+            "奴の弱点は水の攻撃だ、これまでいろんなやつが挑んだが3回の攻撃じゃ倒れない。\n" +
+            "火の攻撃は効くがあまりダメージは見込めない。弱点攻撃と組み合わせれば効くかもしれない。だが、この攻撃も１回だけじゃだめだ、２回は攻撃しないとな。\n" +
+            "それと、草の攻撃は効かないから気を付けろよ。",
+            "水→炎→水→　→",
+            "赤と青を足し、緑を足し、蒼を引き、緑を引き、緋を2回掛け合わしたものでもなく青でもないものは ?",
+            "ここから先は覚悟あるものだけが通ることを許された場所\n" +
+                    "もし覚悟があるのならばこれから話す昔話を聞いていくがいい\n" +
+                    "昔々魔王がこの世界を支配していた。そんな時一人の勇者が現れた。",
+                    "そして、魔王と勇者との戦いが始まった。\n" +
+                    "魔王は勇者に魔法を放ちそれを勇者が水で受け流し、すかさず勇者が反撃する。\n" +
+                    "自然の力で魔王の両足を縛り魔王の態勢を崩した後、炎を纏った剣で魔王の片腕を切り落とす。\n" +
+                    "最後に3つの力を組み合わせた攻撃により魔王を打ち取った",
+            "1first → 4 →　→　→")//表示テキスト
     private var sikaiY :Int = 0
     private var timer = MyCountDownTimer((1 * 60) * 1000, 100)
 
@@ -143,10 +158,11 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
             remove(npc)//更新のための削除
             npc = NPCFragment()
             replace(R.id.haikei, npc)
-            getItem(enemy[sikaiY], back[sikaiY],"")
+            getItem(enemy[sikaiY], back[sikaiY],text[sikaiY])
             commit()
         }
         binding.titleButton.visibility = View.INVISIBLE;
+        sikaiY++
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -168,10 +184,12 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
         binding.timerText.text = "3:00"
         timer = MyCountDownTimer((3 * 60) * 1000, 100)
         timer.start()
+        //binding.testbutton.visibility = View.INVISIBLE;
         binding.testbutton.setOnClickListener {
+            test3()
             /*timer.cancel()
             timer = MyCountDownTimer((3 * 60) * 1000, 100)*/
-            timer.isRunning = when (timer.isRunning) {
+            /*timer.isRunning = when (timer.isRunning) {
                 true -> {
                     //タイマーが動いているときに停止
                     timer.cancel()
@@ -182,7 +200,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
                     timer.start()
                     true
                 }
-            }
+            }*/
         }
         //ここまでタイマー操作
 
@@ -206,7 +224,6 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
                     }else if (fragmentflag[sikaiY] == 1){
                         //NPCフラグメント表示
                         npcfragmentdisplay()
-                        sikaiY++
                         batlefragmentdisplay()
                     }else if (fragmentflag[sikaiY] != 1){
                         //バトルフラグメント表示
@@ -215,6 +232,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
                 }
             }else {
                 //binding.timerText.text = "不正解"
+                sikaiX = 0
                 timer.cancel()
                 timer = MyCountDownTimer((minute * 60 + second - 10) * 1000, 100)
                 timer.start()
@@ -250,8 +268,15 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
     }
 
     override fun onClickNext() {
-        timer.start()
-        binding.titleButton.visibility = View.VISIBLE;
+        if (fragmentflag[sikaiY] == 1){
+            //NPCフラグメント表示
+            npcfragmentdisplay()
+        }else if (fragmentflag[sikaiY] != 1){
+            timer.start()
+            binding.titleButton.visibility = View.VISIBLE;
+            //バトルフラグメント表示
+            batlefragmentdisplay()
+        }
     }
 
     /*override fun onResume() {

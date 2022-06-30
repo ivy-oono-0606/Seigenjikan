@@ -30,12 +30,14 @@ class NPCFragment : Fragment() {
         _binding = FragmentNPCBinding.inflate(inflater, container, false)
         var charaimage:String? = ""
         var backimage:String? = ""
+        var text:String? = ""
         // Bundleを取得する
         val bundle = arguments
         // Bundleがセットされていたら値を受け取る
         if (bundle != null) {
             charaimage = bundle.getString("KEY_POSITION")
             backimage = bundle.getString("KEY_POSITION2")
+            text = bundle.getString("KEY_POSITION3")
         }
         //packageName取得
         val packageName = BuildConfig.APPLICATION_ID
@@ -44,7 +46,7 @@ class NPCFragment : Fragment() {
         binding.NpcImageView.setImageResource(imageId)
         imageId = resources.getIdentifier(backimage, "drawable", packageName) //リソースIDのを取得
         binding.HaikeiImageView.setImageResource(imageId)
-
+        binding.SerihuTextView.text = text
         binding.NextImageButton.setOnClickListener{
 //            val myImage: ImageView = findViewById(R.id.NpcImageView)
 //            myImage.setImageResource(R.drawable.mobu)
@@ -56,7 +58,7 @@ class NPCFragment : Fragment() {
                 fragmentManager.beginTransaction().remove(this).commit()
             }
         }
-
+3
         val inflateX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.9f, 0.87f)
         val inflateY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.9f, 0.87f)
         val animator = ObjectAnimator.ofPropertyValuesHolder(binding.NpcImageView, inflateX, inflateY).apply {

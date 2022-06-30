@@ -27,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="serif"
         android:text="CLEAR"
-        android:textSize="110sp"
+        android:textSize="100sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/TitleButton1"
         app:layout_constraintEnd_toEndOf="parent"

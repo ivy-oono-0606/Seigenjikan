@@ -63,11 +63,12 @@
 
     <TextView
         android:id="@+id/SerihuTextView"
-        android:layout_width="360dp"
+        android:layout_width="340dp"
         android:layout_height="262dp"
+        android:layout_marginTop="32dp"
         android:text="俺の名前は○○。この先には○○がいる。 もしあいつを倒そうと思っているなら俺がアドバイスしてやるよ。 奴の弱点は○○だ、これまでいろんなやつが挑んだが3回の攻撃じゃ倒れない。 ○○は効くがあまりダメージは見込めないかもな。しかし、弱点攻撃と組み合わせれば効くかもしれないな だが、この攻撃も１回だけじゃだめだ。２回は攻撃しないとな。 それと、○○は効かないから気を付けろよ。"
         android:textColor="#5E3D0C"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/SerihuHaikeiImageView"
         app:layout_constraintEnd_toEndOf="@+id/SerihuHaikeiImageView"
         app:layout_constraintHorizontal_bias="0.472"
