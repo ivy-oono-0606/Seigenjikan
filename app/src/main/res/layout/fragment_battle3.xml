@@ -42,4 +42,14 @@
         app:layout_constraintStart_toStartOf="@+id/QuestionImageView"
         app:layout_constraintTop_toBottomOf="@+id/Enemy3ImageView" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/comFrame"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/QuestionImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

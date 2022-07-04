@@ -35,7 +35,7 @@ class Command5Fragment : Fragment() {
                 imageId = resources.getIdentifier("redbutton", "drawable", packageName) //リソースIDのを取得
             }else if (com == 2){
                 imageId = resources.getIdentifier("bluebutton", "drawable", packageName) //リソースIDのを取得
-            }else{
+            }else if (com == 3){
                 imageId = resources.getIdentifier("greenbutton", "drawable", packageName) //リソースIDのを取得
             }
             return imageId

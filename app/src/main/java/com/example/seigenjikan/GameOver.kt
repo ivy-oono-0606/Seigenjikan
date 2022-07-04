@@ -7,7 +7,6 @@ import com.example.seigenjikan.databinding.ActivityGameOverBinding
 
 class GameOver : AppCompatActivity() {
     private lateinit var binding: ActivityGameOverBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameOverBinding.inflate(layoutInflater)

@@ -10,7 +10,7 @@ import com.example.seigenjikan.databinding.ActivitySubBinding
 import java.util.*
 
 
-class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceListener {
+class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
     private lateinit var binding: ActivitySubBinding
     private lateinit var timerF: TimerFragment
     private lateinit var batle: BattleFragment
@@ -22,7 +22,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
     var second:Long = 0
 
     //現在配列最大数8（適宜変える）
-    private val fragmentflag = arrayOf(0, 0, 1, 2, 2, 1,1,2);//呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２
+    private val fragmentflag = arrayOf(0, 0, 1, 2, 2, 1, 1, 2);//呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２
     private val enemy = arrayOf("suraimu", "goburin", "hourousya","doragon" ,"test","mobu","mobu","maou")//敵とNPCの画像
     private val sikai = arrayOf(arrayListOf(1, 2, 3), arrayListOf(3, 3, 2, 1, 2),arrayListOf(), arrayListOf(2, 1, 2, 1, 2), arrayListOf(3),arrayListOf(), arrayListOf(),arrayListOf(1, 3, 2,3,1))//正解コマンド
     private val back = arrayOf("mori","doukutu","tosi","tosi","jyounai","jyounai","jyounai","gyokuza")//背景画像
@@ -42,8 +42,10 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
                     "自然の力で魔王の両足を縛り魔王の態勢を崩した後、炎を纏った剣で魔王の片腕を切り落とす。\n" +
                     "最後に3つの力を組み合わせた攻撃により魔王を打ち取った",
             "1first → 4 →　→　→")//表示テキスト
+    private var sikaiX : Int = 0
     private var sikaiY :Int = 0
     private var timer = MyCountDownTimer((1 * 60) * 1000, 100)
+    var Tsikai = arrayListOf<Int>()
 
     //ここからタイマー定義
     inner class MyCountDownTimer(
@@ -58,23 +60,23 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
         }
         override fun onFinish() {
             binding.timerText.text = "0:00"
-            test2()
+            gameover()
         }
     }
     //ここまでタイマー定義
 
     //ここから画面遷移
-    private fun test2(){
+    private fun gameover(){
         val intent = Intent(this, GameOver::class.java)
         startActivity(intent)
     }
-    private fun test3(){
+    private fun clear(){
         val intent = Intent(this, Clear::class.java)
         startActivity(intent)
     }
     //ここまで画面遷移
 
-    //フラグメントへ値を渡せます
+    //バトルフラグメントへ値を渡せます
     private fun getItem(position: String, com: ArrayList<Int>, Siz: Int): Pair<Fragment?, Fragment?> {
         // Bundle（オブジェクトの入れ物）のインスタンスを作成する
         val bundle = Bundle()
@@ -92,6 +94,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
             return Pair(batle, command5)
         }
     }
+
     //フラグメントへ値を渡せます(オーバーロード:バトルフラグメント２用)
     private fun getItem(position: String, text: String): Fragment? {
         // Bundle（オブジェクトの入れ物）のインスタンスを作成する
@@ -105,8 +108,8 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
         return batle3
     }
 
-    //フラグメントへ値を渡せます(オーバーロード:バトルフラグメント２用)
-    private fun getItem(charaimage: String, backimage: String, text: String): Fragment? {
+    //フラグメントへ値を渡せます(オーバーロード:NPCフラグメント用)
+     fun getItem(charaimage: String, backimage: String, text: String): Fragment? {
         // Bundle（オブジェクトの入れ物）のインスタンスを作成する
         val bundle = Bundle()
         // Key/Pairの形で値をセットする
@@ -122,7 +125,6 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
 
     //バトルフラグメント表示メソッド
     private fun batlefragmentdisplay(){
-        println(fragmentflag[sikaiY])
         supportFragmentManager.beginTransaction().apply{
             if (fragmentflag[sikaiY] == 0){//バトル1の場合
                 remove(batle)//更新のための削除
@@ -151,9 +153,85 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
         val imageId = resources.getIdentifier(back[sikaiY], "drawable", packageName) //リソースIDのを取得
         binding.haikei.setBackgroundResource(imageId) //画像のリソースIDで画像表示
     }
+
+    //NPCフラグメント表示メソッド
+    private fun test(){
+         sikai[sikaiY][sikaiX] = sikai[sikaiY][sikaiX] *10
+        supportFragmentManager.beginTransaction().apply {
+            if (sikai[sikaiY].size == 3) {
+                remove(command3)
+                command3 = Command3Fragment()
+                add(R.id.BatleFrame, command3)//バトルフラグメントの上に重ねて表示
+            } else if (sikai[sikaiY].size == 5) {
+                remove(command5)
+                command5 = Command5Fragment()
+                add(R.id.BatleFrame, command5)
+            }
+            getItem(enemy[sikaiY], sikai[sikaiY], sikai[sikaiY].size)
+            commit()
+        }
+    }
+
+    private fun test2(){
+        var i = 0
+        if (sikaiX != 0){
+            while (i < sikaiX) {
+                sikai[sikaiY][i] = sikai[sikaiY][i] /10
+                i++
+            }
+        }
+
+        supportFragmentManager.beginTransaction().apply {
+            if (sikai[sikaiY].size == 3) {
+                remove(command3)
+                command3 = Command3Fragment()
+                add(R.id.BatleFrame, command3)//バトルフラグメントの上に重ねて表示
+            } else if (sikai[sikaiY].size == 5) {
+                remove(command5)
+                command5 = Command5Fragment()
+                add(R.id.BatleFrame, command5)
+            }
+            getItem(enemy[sikaiY], sikai[sikaiY], sikai[sikaiY].size)
+            commit()
+        }
+    }
+
+    private fun test3(){
+        //sikai[sikaiY][sikaiX] = sikai[sikaiY][sikaiX] *10
+        Tsikai.add(sikai[sikaiY][sikaiX])
+        supportFragmentManager.beginTransaction().apply {
+            if (sikai[sikaiY].size == 3) {
+                remove(command3)
+                command3 = Command3Fragment()
+                add(R.id.BatleFrame, command3)//バトルフラグメントの上に重ねて表示
+            } else if (sikai[sikaiY].size == 5) {
+                remove(command5)
+                command5 = Command5Fragment()
+                add(R.id.BatleFrame, command5)
+            }
+            getItem(enemy[sikaiY], Tsikai, sikai[sikaiY].size)
+            commit()
+        }
+    }
+
+    private fun test4(){
+        supportFragmentManager.beginTransaction().apply {
+            if (sikai[sikaiY].size == 3) {
+                remove(command3)
+            } else if (sikai[sikaiY].size == 5) {
+                remove(command5)
+            }
+            commit()
+        }
+    }
+
     //NPCフラグメント表示メソッド
     private fun npcfragmentdisplay(){
         timer.cancel()
+        timer = MyCountDownTimer((minute * 60 + second) * 1000, 100)
+        binding.RedButton.visibility = View.INVISIBLE;
+        binding.BlueButton.visibility = View.INVISIBLE;
+        binding.GreenButton.visibility = View.INVISIBLE;
         supportFragmentManager.beginTransaction().apply{
             remove(npc)//更新のための削除
             npc = NPCFragment()
@@ -186,7 +264,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
         timer.start()
         //binding.testbutton.visibility = View.INVISIBLE;
         binding.testbutton.setOnClickListener {
-            test3()
+            binding.RedButton.visibility = View.INVISIBLE;
             /*timer.cancel()
             timer = MyCountDownTimer((3 * 60) * 1000, 100)*/
             /*timer.isRunning = when (timer.isRunning) {
@@ -205,22 +283,24 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
         //ここまでタイマー操作
 
         //ここからボタン判定
-        var sikaiX : Int = 0
         fun hanntei(hand: Int){
-            if (sikaiY >= sikai.size){
-                test3()
-            }
             //判定式と正解に１０をかけることで表示が増やせる（例・・・sikai = 10 = hand*10）
             if (sikai[sikaiY][sikaiX] == hand) {
                 binding.timerText.text = "正解"
+                if (fragmentflag[sikaiY] == 0){
+                    test()
+                }else{
+                    test3()
+                }
                 sikaiX++
                 if (sikaiX==sikai[sikaiY].size){
+                    Tsikai = arrayListOf<Int>()
                     sikaiX = 0
                     sikaiY++
                     if (sikaiY >= sikai.size){
                         sikaiY = 0
                         timer.cancel()
-                        test3()
+                        clear()
                     }else if (fragmentflag[sikaiY] == 1){
                         //NPCフラグメント表示
                         npcfragmentdisplay()
@@ -232,6 +312,12 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
                 }
             }else {
                 //binding.timerText.text = "不正解"
+                Tsikai = arrayListOf<Int>()
+                if (fragmentflag[sikaiY] == 0){
+                    test2()
+                }else{
+                    test4()
+                }
                 sikaiX = 0
                 timer.cancel()
                 timer = MyCountDownTimer((minute * 60 + second - 10) * 1000, 100)
@@ -274,6 +360,9 @@ class SubActivity : AppCompatActivity(),NPCFragment.OnboardSignUpTermsOfServiceL
         }else if (fragmentflag[sikaiY] != 1){
             timer.start()
             binding.titleButton.visibility = View.VISIBLE;
+            binding.RedButton.visibility = View.VISIBLE;
+            binding.BlueButton.visibility = View.VISIBLE;
+            binding.GreenButton.visibility = View.VISIBLE;
             //バトルフラグメント表示
             batlefragmentdisplay()
         }

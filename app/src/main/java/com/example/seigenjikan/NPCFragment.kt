@@ -14,14 +14,14 @@ import com.example.seigenjikan.databinding.FragmentNPCBinding
 class NPCFragment : Fragment() {
     private var _binding: FragmentNPCBinding? = null
     private val binding get() = _binding!!
-    private var listener: OnboardSignUpTermsOfServiceListener? = null
+    private var listener: NPCListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.fragment_n_p_c)
     }
 
-    interface OnboardSignUpTermsOfServiceListener {
+    interface NPCListener {
         fun onClickNext()
     }
 
@@ -77,9 +77,9 @@ class NPCFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = context as? OnboardSignUpTermsOfServiceListener
+        listener = context as? NPCListener
         if (listener == null) {
-            throw ClassCastException("$context must implement OnboardSignUpTermsOfServiceListener")
+            throw ClassCastException("$context must implement NPCListener")
         }
     }
 
