@@ -14,15 +14,15 @@ import com.example.seigenjikan.databinding.FragmentNPCBinding
 class NPCFragment : Fragment() {
     private var _binding: FragmentNPCBinding? = null
     private val binding get() = _binding!!
-    private var listener: NPCListener? = null
+    private var listener: NPCListener? = null//イベントリスナー
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.fragment_n_p_c)
     }
 
-    interface NPCListener {
-        fun onClickNext()
+    interface NPCListener {//上記と同名で定義
+        fun onClickNext()//ここでアクティビティのメソッドに渡します。
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +54,7 @@ class NPCFragment : Fragment() {
 //            startActivity(intent)
             val fragmentManager = fragmentManager
             if(fragmentManager != null) {
-                onClickNext(it)
+                onClickNext(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。
                 fragmentManager.beginTransaction().remove(this).commit()
             }
         }
@@ -74,12 +74,12 @@ class NPCFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
+    //ここから下コピペ推奨
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = context as? NPCListener
+        listener = context as? NPCListener//上記のリスナー名と同じにしてください。
         if (listener == null) {
-            throw ClassCastException("$context must implement NPCListener")
+            throw ClassCastException("$context must implement NPCListener")//同上
         }
     }
 
