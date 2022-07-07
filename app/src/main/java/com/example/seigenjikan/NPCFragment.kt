@@ -58,7 +58,6 @@ class NPCFragment : Fragment() {
                 fragmentManager.beginTransaction().remove(this).commit()
             }
         }
-3
         val inflateX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.9f, 0.87f)
         val inflateY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.9f, 0.87f)
         val animator = ObjectAnimator.ofPropertyValuesHolder(binding.NpcImageView, inflateX, inflateY).apply {
