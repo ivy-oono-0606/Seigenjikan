@@ -26,7 +26,7 @@ class TreasureChestFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentTreasureChestBinding.inflate(inflater, container, false)
 
-        binding.TreasureChestImageButton.setOnClickListener{
+       binding.TreasureChestImageButton.setOnClickListener{
             val fragmentManager = fragmentManager
             if(fragmentManager != null) {
                 onClickNext(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。

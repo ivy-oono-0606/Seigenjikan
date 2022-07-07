@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TreasureChestFragment" >
+    tools:context=".TreasureChestFragment">
 
     <ImageView
         android:id="@+id/BgTImageView"
@@ -19,17 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
-    <ImageButton
-        android:id="@+id/TreasureChestImageButton"
-        android:layout_width="250dp"
-        android:layout_height="195dp"
-        android:layout_marginBottom="150dp"
-        android:background="@drawable/tbg_button"
-        android:src="@drawable/takarabakoblue"
-        app:layout_constraintBottom_toBottomOf="@+id/BgTImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/TguidoImageView"
@@ -45,12 +34,46 @@
         android:id="@+id/TguidoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="タップして箱を開けろ"
+        android:text="宝箱を発見した"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/TguidoImageView"
         app:layout_constraintEnd_toEndOf="@+id/TguidoImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/BgTImageView" />
+
+    <ImageButton
+        android:id="@+id/TreasureChestImageButton"
+        android:layout_width="271dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/hakkou2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TreasureChestTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="宝箱を開ける"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/TreasureChestImageButton"
+        app:layout_constraintEnd_toEndOf="@+id/TreasureChestImageButton"
+        app:layout_constraintStart_toStartOf="@+id/TreasureChestImageButton"
+        app:layout_constraintTop_toTopOf="@+id/TreasureChestImageButton" />
+
+    <ImageView
+        android:id="@+id/TreasureChestImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/takarabakoblue"
+        app:layout_constraintBottom_toTopOf="@+id/TreasureChestImageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TguidoImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
