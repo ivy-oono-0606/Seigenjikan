@@ -12,23 +12,23 @@
 
     <TextView
         android:id="@+id/timerText"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="3:00"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/design_default_color_error"
         android:textSize="45sp"
+        app:layout_constraintBottom_toTopOf="@+id/BatleFrame"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/titleButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/titleButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="111dp"
+        android:layout_height="60dp"
         android:text="メニュー"
-        app:layout_constraintBottom_toBottomOf="@+id/timerText"
-        app:layout_constraintEnd_toStartOf="@+id/timerText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,12 +72,11 @@
         android:id="@+id/BatleFrame"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/BlueButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerText"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/titleButton">
 
     </FrameLayout>
 

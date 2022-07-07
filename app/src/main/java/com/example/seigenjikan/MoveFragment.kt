@@ -19,7 +19,9 @@ class MoveFragment : Fragment() {
     }
 
     interface MoveListener {//上記と同名で定義
-    fun onClickNext()//ここでアクティビティのメソッドに渡します。
+        fun test2()//ここでアクティビティのメソッドに渡します。
+        fun test3()//ここでアクティビティのメソッドに渡します。
+        fun test4()//ここでアクティビティのメソッドに渡します。
 //        fun onClickNext()//ここでアクティビティのメソッドに渡します。
 //        fun onClickNext()//ここでアクティビティのメソッドに渡します。
     }
@@ -28,10 +30,18 @@ class MoveFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentMoveBinding.inflate(inflater, container, false)
 
+        binding.RightImageButton.setOnClickListener{
+            val fragmentManager = fragmentManager
+            if(fragmentManager != null) {
+                test2(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。
+                fragmentManager.beginTransaction().remove(this).commit()
+            }
+        }
+
         binding.LeftImageButton.setOnClickListener{
             val fragmentManager = fragmentManager
             if(fragmentManager != null) {
-                onClickNext(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。
+                test3(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。
                 fragmentManager.beginTransaction().remove(this).commit()
             }
         }
@@ -39,15 +49,7 @@ class MoveFragment : Fragment() {
         binding.UpImageButton.setOnClickListener{
             val fragmentManager = fragmentManager
             if(fragmentManager != null) {
-                onClickNext(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。
-                fragmentManager.beginTransaction().remove(this).commit()
-            }
-        }
-
-        binding.RightImageButton.setOnClickListener{
-            val fragmentManager = fragmentManager
-            if(fragmentManager != null) {
-                onClickNext(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。
+                test4(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。
                 fragmentManager.beginTransaction().remove(this).commit()
             }
         }
@@ -69,9 +71,15 @@ class MoveFragment : Fragment() {
         listener = null
     }
 
-    fun onClickNext(view: View) {
-        listener?.onClickNext()
-//        listener?.onClickNext()
-//        listener?.onClickNext()
+    fun test2(view: View) {
+        listener?.test2()
+    }
+
+    fun test3(view: View) {
+        listener?.test3()
+    }
+
+    fun test4(view: View) {
+        listener?.test4()
     }
 }
