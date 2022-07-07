@@ -1,6 +1,7 @@
 package com.example.seigenjikan
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
@@ -22,7 +23,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
     var second:Long = 0
 
     //現在配列最大数8（適宜変える）
-    private val fragmentflag = arrayOf(0, 0, 1, 2, 2, 1, 1, 2);//呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２
+    private val fragmentflag = arrayOf(0, 0, 1, 2, 2, 1, 1, 2);//呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２ 3＝進行方向決定
     private val enemy = arrayOf("suraimu", "goburin", "hourousya","doragon" ,"test","mobu","mobu","maou")//敵とNPCの画像
     private val sikai = arrayOf(arrayListOf(1, 2, 3), arrayListOf(3, 3, 2, 1, 2),arrayListOf(), arrayListOf(2, 1, 2, 1, 2), arrayListOf(3),arrayListOf(), arrayListOf(),arrayListOf(1, 3, 2,3,1))//正解コマンド
     private val back = arrayOf("mori","doukutu","tosi","tosi","jyounai","jyounai","jyounai","gyokuza")//背景画像
@@ -123,7 +124,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
         return npc
     }
 
-    //バトルフラグメント表示メソッド
+    //バトルフラグメント表示メソッド(1,2両用)
     private fun batlefragmentdisplay(){
         supportFragmentManager.beginTransaction().apply{
             if (fragmentflag[sikaiY] == 0){//バトル1の場合
@@ -154,8 +155,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
         binding.haikei.setBackgroundResource(imageId) //画像のリソースIDで画像表示
     }
 
-    //NPCフラグメント表示メソッド
-    private fun test(){
+    private fun commandviewchangeB1(){//コマンドが正解していたら表示切り替え(バトルフラグメント1用）
          sikai[sikaiY][sikaiX] = sikai[sikaiY][sikaiX] *10
         supportFragmentManager.beginTransaction().apply {
             if (sikai[sikaiY].size == 3) {
@@ -172,7 +172,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
         }
     }
 
-    private fun test2(){
+    private fun commandviewresetB1(){//不正解時コマンド表示リセット(バトルフラグメント1用）
         var i = 0
         if (sikaiX != 0){
             while (i < sikaiX) {
@@ -180,7 +180,6 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
                 i++
             }
         }
-
         supportFragmentManager.beginTransaction().apply {
             if (sikai[sikaiY].size == 3) {
                 remove(command3)
@@ -196,8 +195,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
         }
     }
 
-    private fun test3(){
-        //sikai[sikaiY][sikaiX] = sikai[sikaiY][sikaiX] *10
+    private fun commandviewchangeB2(){//コマンドが正解していたら表示切り替え(バトルフラグメント2用）
         Tsikai.add(sikai[sikaiY][sikaiX])
         supportFragmentManager.beginTransaction().apply {
             if (sikai[sikaiY].size == 3) {
@@ -214,7 +212,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
         }
     }
 
-    private fun test4(){
+    private fun commandviewresetB2(){//不正解時コマンド表示リセット(バトルフラグメント2用）
         supportFragmentManager.beginTransaction().apply {
             if (sikai[sikaiY].size == 3) {
                 remove(command3)
@@ -243,6 +241,75 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
         sikaiY++
     }
 
+    override fun onClickNext() {//NPCフラグメントからイベントを受け取れます。
+        if (fragmentflag[sikaiY] == 1){
+            //NPCフラグメント表示
+            npcfragmentdisplay()
+        }else if (fragmentflag[sikaiY] != 1){
+            timer.start()
+            binding.titleButton.visibility = View.VISIBLE;
+            binding.RedButton.visibility = View.VISIBLE;
+            binding.BlueButton.visibility = View.VISIBLE;
+            binding.GreenButton.visibility = View.VISIBLE;
+            //バトルフラグメント表示
+            batlefragmentdisplay()
+        }
+    }
+
+    fun test1(direction: Int) {//moveフラグメント動作
+        supportFragmentManager.beginTransaction().apply{
+            remove(npc)//更新のための削除
+            npc = NPCFragment()
+            replace(R.id.haikei, npc)
+            getItem(enemy[sikaiY], back[sikaiY],text[sikaiY])
+            commit()
+        }
+    }
+
+    fun test2() {//moveフラグメントから右方向受け取り
+        if (fragmentflag[sikaiY] == 1){
+            //NPCフラグメント表示
+            npcfragmentdisplay()
+        }else if (fragmentflag[sikaiY] != 1){
+            timer.start()
+            binding.titleButton.visibility = View.VISIBLE;
+            binding.RedButton.visibility = View.VISIBLE;
+            binding.BlueButton.visibility = View.VISIBLE;
+            binding.GreenButton.visibility = View.VISIBLE;
+            //バトルフラグメント表示
+            batlefragmentdisplay()
+        }
+    }
+
+    fun test3() {//moveフラグメントから左方向受け取り
+        if (fragmentflag[sikaiY] == 1){
+            //NPCフラグメント表示
+            npcfragmentdisplay()
+        }else if (fragmentflag[sikaiY] != 1){
+            timer.start()
+            binding.titleButton.visibility = View.VISIBLE;
+            binding.RedButton.visibility = View.VISIBLE;
+            binding.BlueButton.visibility = View.VISIBLE;
+            binding.GreenButton.visibility = View.VISIBLE;
+            //バトルフラグメント表示
+            batlefragmentdisplay()
+        }
+    }
+
+    fun test4() {//moveフラグメントから前方向受け取り
+        if (fragmentflag[sikaiY] == 1){
+            //NPCフラグメント表示
+            npcfragmentdisplay()
+        }else if (fragmentflag[sikaiY] != 1){
+            timer.start()
+            binding.titleButton.visibility = View.VISIBLE;
+            binding.RedButton.visibility = View.VISIBLE;
+            binding.BlueButton.visibility = View.VISIBLE;
+            binding.GreenButton.visibility = View.VISIBLE;
+            //バトルフラグメント表示
+            batlefragmentdisplay()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySubBinding.inflate(layoutInflater)
@@ -258,7 +325,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
         batlefragmentdisplay()
         //ここまでタイマーフラグメント、バトルフラグメント表示
 
-        //ここからタイマー操作
+        //ここからテストボタン
         binding.timerText.text = "3:00"
         timer = MyCountDownTimer((3 * 60) * 1000, 100)
         timer.start()
@@ -280,7 +347,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
                 }
             }*/
         }
-        //ここまでタイマー操作
+        //ここまでテストボタン
 
         //ここからボタン判定
         fun hanntei(hand: Int){
@@ -288,9 +355,9 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
             if (sikai[sikaiY][sikaiX] == hand) {
                 binding.timerText.text = "正解"
                 if (fragmentflag[sikaiY] == 0){
-                    test()
+                    commandviewchangeB1()
                 }else{
-                    test3()
+                    commandviewchangeB2()
                 }
                 sikaiX++
                 if (sikaiX==sikai[sikaiY].size){
@@ -314,9 +381,9 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
                 //binding.timerText.text = "不正解"
                 Tsikai = arrayListOf<Int>()
                 if (fragmentflag[sikaiY] == 0){
-                    test2()
+                    commandviewresetB1()
                 }else{
-                    test4()
+                    commandviewresetB2()
                 }
                 sikaiX = 0
                 timer.cancel()
@@ -326,48 +393,40 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener{
         }
         //ここまでボタン判定
 
-        //メニューボタン
+        //ここからメニューボタン現在機能未定
         binding.titleButton.setOnClickListener{
             supportFragmentManager.beginTransaction().apply{
                 replace(R.id.BatleFrame, timerF)
                 commit()
             }
         }
-        //メニューボタンここまで
+        //ここまでメニューボタン
 
+        lateinit var mp: MediaPlayer
         //赤ボタン
         binding.RedButton.setOnClickListener{
             hanntei(1)
+            mp = MediaPlayer.create(this,R.raw.se_magic10);
+            mp.start();
         }
         //赤ボタンここまで
 
         //青ボタン
         binding.BlueButton.setOnClickListener{
             hanntei(2)
+            mp = MediaPlayer.create(this,R.raw.bubble_attack1);
+            mp.start();
         }
 
         //緑ボタン
         binding.GreenButton.setOnClickListener{
             hanntei(3)
+            mp = MediaPlayer.create(this,R.raw.heavy_punch1);
+            mp.start();
         }
         //緑ボタンここまで
     }
-
-    override fun onClickNext() {
-        if (fragmentflag[sikaiY] == 1){
-            //NPCフラグメント表示
-            npcfragmentdisplay()
-        }else if (fragmentflag[sikaiY] != 1){
-            timer.start()
-            binding.titleButton.visibility = View.VISIBLE;
-            binding.RedButton.visibility = View.VISIBLE;
-            binding.BlueButton.visibility = View.VISIBLE;
-            binding.GreenButton.visibility = View.VISIBLE;
-            //バトルフラグメント表示
-            batlefragmentdisplay()
-        }
-    }
-
+    //現在使用予定なし
     /*override fun onResume() {
         super.onResume()
         if (sikaiY != 0){
