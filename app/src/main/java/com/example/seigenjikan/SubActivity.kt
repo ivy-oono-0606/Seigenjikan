@@ -1,17 +1,25 @@
 package com.example.seigenjikan
 
+import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.seigenjikan.databinding.ActivitySubBinding
+import io.realm.Realm
 import java.util.*
 
 class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.MoveListener{
     private lateinit var binding: ActivitySubBinding
+    private var _binding: ActivitySubBinding? = null
+    private val binding2 get() = _binding!!
+    private lateinit var realm: Realm
     private lateinit var timerF: TimerFragment
     private lateinit var batle: BattleFragment
     private lateinit var batle3: Battle3Fragment
@@ -270,6 +278,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        realm = Realm.getDefaultInstance()
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -383,6 +392,11 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }
         //緑ボタンここまで---------------------------------------------------------------------------
     }
+
+//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+//        _binding = ActivitySubBinding.inflate(inflater, container, false)
+//        return binding2.root
+//    }
     //現在使用予定なし
     /*override fun onResume() {
         super.onResume()
@@ -390,6 +404,16 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
             fragmentdisplay()
         }
     }*/
+
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
+    }
 
     override fun onBackPressed() {}
 }
