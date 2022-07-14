@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectSubActivity">
+
+    <ImageView
+        android:id="@+id/MsImageView"
+        android:layout_width="205dp"
+        android:layout_height="411dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mori" />
+
+    <ImageView
+        android:id="@+id/DjImageView"
+        android:layout_width="208dp"
+        android:layout_height="411dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/doukutu" />
+
+    <ImageView
+        android:id="@+id/VhImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/rengoku" />
+
+    <Button
+        android:id="@+id/MsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="メインストーリー"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/MsImageView"
+        app:layout_constraintEnd_toStartOf="@+id/DjImageView"
+        app:layout_constraintStart_toStartOf="@+id/MsImageView"
+        app:layout_constraintTop_toTopOf="@+id/MsImageView" />
+
+    <Button
+        android:id="@+id/DjButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="ダンジョン"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/DjImageView"
+        app:layout_constraintEnd_toEndOf="@+id/DjImageView"
+        app:layout_constraintStart_toEndOf="@+id/MsImageView"
+        app:layout_constraintTop_toTopOf="@+id/DjImageView" />
+
+    <Button
+        android:id="@+id/DragonButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="100dp"
+        android:text="竜の谷"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/VhTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="180dp"
+        android:text="高難易度クエスト"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/VhImageView"
+        app:layout_constraintEnd_toEndOf="@+id/VhImageView"
+        app:layout_constraintStart_toStartOf="@+id/VhImageView"
+        app:layout_constraintTop_toTopOf="@+id/VhImageView" />
+
+    <Button
+        android:id="@+id/DevilButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="100dp"
+        android:text="悪魔の住処"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
