@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.seigenjikan.databinding.FragmentMoveBinding
-import com.example.seigenjikan.databinding.FragmentNPCBinding
 
 class MoveFragment : Fragment() {
     private var _binding: FragmentMoveBinding? = null
@@ -19,9 +18,9 @@ class MoveFragment : Fragment() {
     }
 
     interface MoveListener {//上記と同名で定義
-        fun test2()//ここでアクティビティのメソッドに渡します。
-        fun test3()//ここでアクティビティのメソッドに渡します。
-        fun test4()//ここでアクティビティのメソッドに渡します。
+        fun moveright()//ここでアクティビティのメソッドに渡します。
+        fun moveleft()//ここでアクティビティのメソッドに渡します。
+        fun moveforward()//ここでアクティビティのメソッドに渡します。
 //        fun onClickNext()//ここでアクティビティのメソッドに渡します。
 //        fun onClickNext()//ここでアクティビティのメソッドに渡します。
     }
@@ -72,14 +71,14 @@ class MoveFragment : Fragment() {
     }
 
     fun test2(view: View) {
-        listener?.test2()
+        listener?.moveright()
     }
 
     fun test3(view: View) {
-        listener?.test3()
+        listener?.moveleft()
     }
 
     fun test4(view: View) {
-        listener?.test4()
+        listener?.moveforward()
     }
 }
