@@ -1,5 +1,7 @@
 package com.example.seigenjikan
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,8 +27,30 @@ class TreasureChestFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentTreasureChestBinding.inflate(inflater, container, false)
+        var treasurimage:String? = ""
+        var backimage:String? = ""
+        var text:String? = "宝箱を発見した"
+        // Bundleを取得する
+        val bundle = arguments
+        // Bundleがセットされていたら値を受け取る
+        if (bundle != null) {
+            treasurimage = bundle.getString("KEY_POSITION")
+            backimage = bundle.getString("KEY_POSITION2")
+            if (bundle.getString("KEY_POSITION3") != null){
+                text = bundle.getString("KEY_POSITION3")
+                binding.TreasureChestTextView.text="次へ進む"
+            }
+        }
+        //packageName取得
+        val packageName = BuildConfig.APPLICATION_ID
 
-       binding.TreasureChestImageButton.setOnClickListener{
+        var imageId = resources.getIdentifier(treasurimage, "drawable", packageName) //リソースIDのを取得
+        binding.TreasureChestImageView.setImageResource(imageId)
+        imageId = resources.getIdentifier(backimage, "drawable", packageName) //リソースIDのを取得
+        binding.BgTImageView.setImageResource(imageId)
+        binding.TguidoTextView.text = text
+
+        binding.TreasureChestImageButton.setOnClickListener{
             val fragmentManager = fragmentManager
             if(fragmentManager != null) {
                 onClickNext(it)//下記のメソッドを呼びます。下をコピペした後ワンクリックリスナーなどで呼び出ししてください。
