@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onstartbuttontapped(View: View?){
-        val intent = Intent(this, SubActivity::class.java)
+        val intent = Intent(this, SelectSubActivity::class.java)
         startActivity(intent)
     }
 

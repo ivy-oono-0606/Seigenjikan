@@ -36,7 +36,7 @@ class TreasureChestFragment : Fragment() {
         if (bundle != null) {
             treasurimage = bundle.getString("KEY_POSITION")
             backimage = bundle.getString("KEY_POSITION2")
-            if (bundle.getString("KEY_POSITION3") != null){
+            if (bundle.getString("KEY_POSITION3") != ""){
                 text = bundle.getString("KEY_POSITION3")
                 binding.TreasureChestTextView.text="次へ進む"
             }

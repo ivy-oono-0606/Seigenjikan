@@ -256,7 +256,6 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
             treasuregetItem(GameFlagBranch[FlagY].imageName, GameFlagBranch[FlagY].back,GameFlagBranch[FlagY].text)
             commit()
         }
-        FlagY++
     }
 
     fun flagbranch() {//フラグメント分岐
@@ -273,7 +272,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }else if(GameFlagBranch[FlagY].flag == 5){
             movefragmentdisplay()//moveフラグメント表示
         }else if(GameFlagBranch[FlagY].flag == 6){
-            treasurechsetfragmentdisplay()//moveフラグメント表示
+            treasurechsetfragmentdisplay()// treasureフラグメント表示
         }
     }
 
@@ -291,24 +290,25 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         binding.GreenButton.visibility = View.VISIBLE;
     }
 
-
-
     override fun moveright() {//moveフラグメントから右方向受け取り
         FlagY++
         flagbranch()
     }
 
     override fun moveleft() {//moveフラグメントから左方向受け取り
-        FlagY = FlagY + 2
+        FlagY += 2
         flagbranch()
     }
 
     override fun moveforward() {//moveフラグメントから前方向受け取り
-        FlagY = FlagY + 3
+        FlagY += 3
         flagbranch()
     }
 
     override fun onClickNext() {//NPCフラグメントからイベントを受け取れます。
+        if(GameFlagBranch[FlagY].flag == 6){
+            FlagY += GameFlagBranch[FlagY].sikai[0]
+        }
         timer.start()
         flagbranch()
         /*if (GameFlagBranch[FlagY].flag == 1){
@@ -326,7 +326,8 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         super.onCreate(savedInstanceState)
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        GameFlagBranch = getGameFlagBranch1(resources)
+        val text = intent.getStringExtra("TEXT_KEY")
+        GameFlagBranch = getGameFlagBranch1(resources)//json読み込み
 
         //ここからタイマーフラグメント、バトルフラグメント表示------------------------------------------
         npc = NPCFragment()

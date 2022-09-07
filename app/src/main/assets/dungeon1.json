@@ -7,46 +7,53 @@
     "text": ""
   },
   {
+    "flag": 6,
+    "imageName": "takarabakogreen",
+    "sikai": [3],
+    "back": "doukutu",
+    "text": ""
+  },
+  {
   "flag": 6,
   "imageName": "takarabakored",
-  "sikai": [],
+  "sikai": [3],
   "back": "doukutu",
-  "text": "宝箱を発見した。"
+  "text": ""
   },
   {
   "flag": 6,
   "imageName": "takarabakoblue",
-  "sikai": [],
+  "sikai": [3],
   "back": "doukutu",
-  "text": "宝箱を発見した。"
+  "text": ""
   },
   {
     "flag": 6,
-    "imageName": "takarabakogreen",
-    "sikai": [],
+    "imageName": "takarabakogreenopen",
+    "sikai": [6],
     "back": "doukutu",
-    "text": "宝箱を発見した。"
+    "text": "最深部の蛇は猛毒持ち、自然の力で中和せよ"
   },
   {
   "flag": 6,
   "imageName": "takarabakoredopen",
-  "sikai": [],
+  "sikai": [5],
   "back": "doukutu",
   "text": "岩を砕く一撃目は水である"
   },
   {
   "flag": 6,
   "imageName": "takarabakoblueopen",
-  "sikai": [],
+  "sikai": [4],
   "back": "doukutu",
   "text": "リザードマンは炎が苦手だ"
   },
   {
-  "flag": 6,
-  "imageName": "takarabakogreenopen",
-  "sikai": [],
-  "back": "doukutu",
-  "text": "最深部の蛇は猛毒持ち、自然の力で中和せよ"
+    "flag": 6,
+    "imageName": "takarabakogreenopen",
+    "sikai": [],
+    "back": "doukutu",
+    "text": "空だった"
   },
   {
   "flag": 6,
@@ -58,13 +65,6 @@
   {
   "flag": 6,
   "imageName": "takarabakoblueopen",
-  "sikai": [],
-  "back": "doukutu",
-  "text": "空だった"
-  },
-  {
-  "flag": 6,
-  "imageName": "takarabakogreenopen",
   "sikai": [],
   "back": "doukutu",
   "text": "空だった"
@@ -106,9 +106,9 @@
   },
   {
     "flag": 4,
-    "imageName": "mimikku",
-    "sikai": [1,2,3],
-    "back": "doukutu",
-    "text": "スライムを倒した時のボタンの順番は？"
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": ""
   }
 ]
