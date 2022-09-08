@@ -18,37 +18,19 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
     private lateinit var batle: BattleFragment
     private lateinit var batle3: Battle3Fragment
     private lateinit var npc: NPCFragment
+    private lateinit var config: configFragment
+    private lateinit var command2: Command2Fragment
     private lateinit var command3: Command3Fragment
+    private lateinit var command4: Command4Fragment
     private lateinit var command5: Command5Fragment
     private lateinit var moveFragment: MoveFragment
     private lateinit var treasureChestFragment: TreasureChestFragment
     var minute:Long = 0
     var second:Long = 0
 
-    //現在配列最大数9（適宜変える）
     private var GameFlagBranch = listOf<GameFlagBranch>()
     //呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２ 3＝ダンジョン突入 4＝ダンジョン脱出 5＝方向　6＝宝箱
-    /*private val fragmentflag = arrayOf(3, 0, 0, 1, 2, 2, 1, 1, 2);
-    private val enemy = arrayOf("", "suraimu", "goburin", "hourousya", "doragon", "test", "mobu", "mobu", "maou")//敵とNPCの画像
-    private val sikai = arrayOf(arrayListOf(), arrayListOf(1, 2, 3), arrayListOf(3, 3, 2, 1, 2), arrayListOf(), arrayListOf(2, 1, 2, 1, 2),
-            arrayListOf(3), arrayListOf(), arrayListOf(), arrayListOf(1, 3, 2, 3, 1))//原則正解コマンドだが、進行方向処理の場合は配列の移動知
-    private val back = arrayOf("", "mori", "doukutu", "tosi", "tosi", "jyounai", "jyounai", "jyounai", "gyokuza")//背景画像
-    private val text = arrayOf("", "",
-            "",
-            "俺の名前はグラン。この先にはワイバーンがいる。 もしあいつを倒そうと思っているなら俺がアドバイスしてやるよ。\n" +
-                    "奴の弱点は水の攻撃だ、これまでいろんなやつが挑んだが3回の攻撃じゃ倒れない。\n" +
-                    "火の攻撃は効くがあまりダメージは見込めない。弱点攻撃と組み合わせれば効くかもしれない。だが、この攻撃も１回だけじゃだめだ、２回は攻撃しないとな。\n" +
-                    "それと、草の攻撃は効かないから気を付けろよ。",
-            "水→炎→水→　→",
-            "赤と青を足し、緑を足し、蒼を引き、緑を引き、緋を2回掛け合わしたものでもなく青でもないものは ?",
-            "ここから先は覚悟あるものだけが通ることを許された場所\n" +
-                    "もし覚悟があるのならばこれから話す昔話を聞いていくがいい\n" +
-                    "昔々魔王がこの世界を支配していた。そんな時一人の勇者が現れた。",
-            "そして、魔王と勇者との戦いが始まった。\n" +
-                    "魔王は勇者に魔法を放ちそれを勇者が水で受け流し、すかさず勇者が反撃する。\n" +
-                    "自然の力で魔王の両足を縛り魔王の態勢を崩した後、炎を纏った剣で魔王の片腕を切り落とす。\n" +
-                    "最後に3つの力を組み合わせた攻撃により魔王を打ち取った",
-            "1first → 4 →　→　→")//表示テキスト*/
+
     private var FlagX : Int = 0
     private var FlagY : Int = 0
     private var subFlagX : Int = 0
@@ -88,9 +70,15 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         bundle.putString("KEY_POSITION", enemyimage)//敵画像送信用(bundleの後のPuによt~~は送る変数によって変える)
         bundle.putIntegerArrayList("KEY_POSITION2", com)//コマンド送信用
         batle.arguments = bundle// Fragmentに値をセットする
-        if (Siz == 3){
+        if (Siz == 2){
+            command2.arguments = bundle
+            return Pair(batle, command2)
+        }else if (Siz == 3){
             command3.arguments = bundle
             return Pair(batle, command3)
+        }else if (Siz == 4){
+            command4.arguments = bundle
+            return Pair(batle, command4)
         }else{
             command5.arguments = bundle
             return Pair(batle, command5)
@@ -129,10 +117,18 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 remove(batle)//更新のための削除
                 batle = BattleFragment()//再定義
                 replace(R.id.BatleFrame, batle)//表示処理
-                if (GameFlagBranch[FlagY].sikai.size == 3){
+                if (GameFlagBranch[FlagY].sikai.size == 2){
+                    remove(command2)
+                    command2 =  Command2Fragment()
+                    add(R.id.BatleFrame, command2)//バトルフラグメントの上に重ねて表示
+                }else if (GameFlagBranch[FlagY].sikai.size == 3){
                     remove(command3)
                     command3 =  Command3Fragment()
-                    add(R.id.BatleFrame, command3)//バトルフラグメントの上に重ねて表示
+                    add(R.id.BatleFrame, command3)
+                }else if (GameFlagBranch[FlagY].sikai.size == 4){
+                    remove(command4)
+                    command4 =  Command4Fragment()
+                    add(R.id.BatleFrame, command4)
                 }else if (GameFlagBranch[FlagY].sikai.size == 5){
                     remove(command5)
                     command5 =  Command5Fragment()
@@ -173,10 +169,18 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         viewanswer.add(GameFlagBranch[FlagY].sikai[FlagX])
         batlefragmentdisplay()
         supportFragmentManager.beginTransaction().apply {
-            if (GameFlagBranch[FlagY].sikai.size == 3) {
+            if (GameFlagBranch[FlagY].sikai.size == 2) {
+                remove(command2)
+                command2 = Command2Fragment()
+                add(R.id.BatleFrame, command2)//バトルフラグメントの上に重ねて表示
+            }else if (GameFlagBranch[FlagY].sikai.size == 3) {
                 remove(command3)
                 command3 = Command3Fragment()
                 add(R.id.BatleFrame, command3)//バトルフラグメントの上に重ねて表示
+            }else if (GameFlagBranch[FlagY].sikai.size == 4) {
+                remove(command4)
+                command4 = Command4Fragment()
+                add(R.id.BatleFrame, command4)//バトルフラグメントの上に重ねて表示
             } else if (GameFlagBranch[FlagY].sikai.size == 5) {
                 remove(command5)
                 command5 = Command5Fragment()
@@ -189,8 +193,12 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
 
     private fun commandviewresetB2(){//不正解時コマンド表示リセット(バトルフラグメント2用）
         supportFragmentManager.beginTransaction().apply {
-            if (GameFlagBranch[FlagY].sikai.size == 3) {
+            if (GameFlagBranch[FlagY].sikai.size == 2) {
+                remove(command2)
+            }else if (GameFlagBranch[FlagY].sikai.size == 3) {
                 remove(command3)
+            } else if (GameFlagBranch[FlagY].sikai.size == 4) {
+                remove(command4)
             } else if (GameFlagBranch[FlagY].sikai.size == 5) {
                 remove(command5)
             }
@@ -311,15 +319,6 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }
         timer.start()
         flagbranch()
-        /*if (GameFlagBranch[FlagY].flag == 1){
-            //NPCフラグメント表示
-            npcfragmentdisplay()
-        }else if (GameFlagBranch[FlagY].flag != 1){
-            timer.start()
-            buttonveiw()
-            //バトルフラグメント表示
-            batlefragmentdisplay()
-        }*/
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -334,7 +333,9 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         timerF = TimerFragment()
         batle = BattleFragment()
         batle3 = Battle3Fragment()
+        command2 =  Command2Fragment()
         command3 =  Command3Fragment()
+        command4 =  Command4Fragment()
         command5 =  Command5Fragment()
         moveFragment = MoveFragment()
         treasureChestFragment = TreasureChestFragment()
@@ -415,8 +416,11 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
 
         //ここからメニューボタン現在機能未定----------------------------------------------------------
         binding.titleButton.setOnClickListener{
-            supportFragmentManager.beginTransaction().apply{
-                replace(R.id.BatleFrame, timerF)
+            timer.cancel()
+            timer = MyCountDownTimer((minute * 60 + second - 10) * 1000, 100)
+            supportFragmentManager.beginTransaction().apply {
+                    config = configFragment()
+                    add(R.id.config, config)//バトルフラグメントの上に重ねて表示
                 commit()
             }
         }
@@ -447,23 +451,6 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }
         //緑ボタンここまで---------------------------------------------------------------------------
     }
-
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        _binding = ActivitySubBinding.inflate(inflater, container, false)
-//        return binding2.root
-//    }
-    //現在使用予定なし
-    /*override fun onResume() {
-        super.onResume()
-        if (FlagY != 0){
-            fragmentdisplay()
-        }
-    }*/
-
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
 
     override fun onDestroy() {
         super.onDestroy()

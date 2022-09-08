@@ -84,7 +84,19 @@
         android:id="@+id/testbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="テスト(スキップ)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/config"
+        android:layout_width="300dp"
+        android:layout_height="450dp"
+        app:layout_constraintBottom_toTopOf="@+id/BlueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/BatleFrame"
+        app:layout_constraintTop_toTopOf="@+id/BatleFrame">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

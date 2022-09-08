@@ -32,14 +32,14 @@
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/com5.5"
+        android:id="@+id/com5.3"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/com5.4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/com5.4"
+        app:layout_constraintStart_toEndOf="@+id/com5.2"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
@@ -56,14 +56,15 @@
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/com5.3"
+        android:id="@+id/com5.5"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button"
-        app:layout_constraintEnd_toStartOf="@+id/com5.4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/com5.2"
+        app:layout_constraintStart_toEndOf="@+id/com5.4"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
