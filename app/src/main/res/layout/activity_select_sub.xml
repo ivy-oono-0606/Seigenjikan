@@ -8,16 +8,17 @@
 
     <ImageView
         android:id="@+id/MsImageView"
-        android:layout_width="206dp"
+        android:layout_width="233dp"
         android:layout_height="411dp"
         android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/DjImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mori" />
 
     <ImageView
         android:id="@+id/DjImageView"
-        android:layout_width="206dp"
+        android:layout_width="180dp"
         android:layout_height="411dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
