@@ -17,7 +17,7 @@
 
     <ImageView
         android:id="@+id/DjImageView"
-        android:layout_width="207dp"
+        android:layout_width="206dp"
         android:layout_height="411dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
