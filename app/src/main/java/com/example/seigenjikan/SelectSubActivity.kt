@@ -19,5 +19,10 @@ class SelectSubActivity : AppCompatActivity() {
             val intent = Intent(this, SubActivity::class.java)
             startActivity(intent)
         }
+
+        binding.DragonButton.setOnClickListener{
+            val intent = Intent(this, TestSubActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

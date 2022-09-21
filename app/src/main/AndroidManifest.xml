@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Seigenjikan">
         <activity android:name=".SelectSubActivity"></activity>
+        <activity android:name=".TestSubActivity"></activity>
         <activity android:name=".NpcSubActivity" />
         <activity android:name=".GameOver" />
         <activity android:name=".Clear" />
