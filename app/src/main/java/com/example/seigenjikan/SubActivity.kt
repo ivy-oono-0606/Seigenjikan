@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.seigenjikan.databinding.ActivitySubBinding
 import java.util.*
 
-class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.MoveListener,TreasureChestFragment.TreasureChestListener{
+class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.MoveListener,TreasureChestFragment.TreasureChestListener, configFragment.configListener{
     private lateinit var binding: ActivitySubBinding
     private lateinit var timerF: TimerFragment
     private lateinit var batle: BattleFragment
@@ -321,6 +321,20 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         flagbranch()
     }
 
+    override fun backconfig() {//configフラグメントから戻る受け取り
+        binding.titleButton.isClickable= true
+        binding.RedButton.isClickable = true
+        binding.BlueButton.isClickable = true
+        binding.GreenButton.isClickable = true
+        timer.start()
+    }
+
+    override fun retire() {//configフラグメントからリタイア
+        timer.cancel()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySubBinding.inflate(layoutInflater)
@@ -379,7 +393,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         fun hanntei(hand: Int){
             //判定式と正解に１０をかけることで表示が増やせる（例・・・sikai = 10 = hand*10）
             if (GameFlagBranch[FlagY].sikai[FlagX] == hand) {
-                binding.timerText.text = "正解"
+                //binding.timerText.text = "正解"
                 if (GameFlagBranch[FlagY].flag == 0){
                     commandviewchangeB1()
                 }else{
@@ -416,8 +430,12 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
 
         //ここからメニューボタン現在機能未定----------------------------------------------------------
         binding.titleButton.setOnClickListener{
+            binding.titleButton.isClickable=false
+            binding.RedButton.isClickable = false
+            binding.BlueButton.isClickable = false
+            binding.GreenButton.isClickable = false
             timer.cancel()
-            timer = MyCountDownTimer((minute * 60 + second - 10) * 1000, 100)
+            timer = MyCountDownTimer((minute * 60 + second) * 1000, 100)
             supportFragmentManager.beginTransaction().apply {
                     config = configFragment()
                     add(R.id.config, config)//バトルフラグメントの上に重ねて表示

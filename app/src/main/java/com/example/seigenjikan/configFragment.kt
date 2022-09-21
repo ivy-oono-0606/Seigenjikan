@@ -1,39 +1,66 @@
 package com.example.seigenjikan
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.seigenjikan.databinding.FragmentConfigBinding
+import com.example.seigenjikan.databinding.FragmentMoveBinding
 
 class configFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding:FragmentConfigBinding? = null
+    private val binding get() = _binding!!
+    private var listener:configListener?= null//
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    }
+
+    interface configListener {//上記と同名で定義
+    fun backconfig()//ここでアクティビティのメソッドに渡します。
+    fun retire()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_config, container, false)
+        _binding = FragmentConfigBinding.inflate(inflater, container, false)
+
+        binding.retirebutton.setOnClickListener {
+            retire(it)
+        }
+
+        binding.backbutton.setOnClickListener {
+            val fragmentManager = fragmentManager
+            if(fragmentManager != null) {
+                fragmentManager.beginTransaction().remove(this).commit()
+            }
+            back(it)
+        }
+        return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                configFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
+    //ここから下コピペ推奨
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as? configListener//上記のリスナー名と同じにしてください。
+        if (listener == null) {
+            throw ClassCastException("$context must implement configListener")//同上
+        }
+    }
+
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    fun back(view: View) {
+        listener?.backconfig()
+    }
+
+    fun retire(view: View) {
+        listener?.retire()
     }
 }
