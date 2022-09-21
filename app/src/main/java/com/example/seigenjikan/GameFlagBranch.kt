@@ -34,3 +34,8 @@ fun getdungeon1(resources:Resources): List<GameFlagBranch> {
     val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
     return obj
 }
+
+fun Randomenemychnge(str:String): List<GameFlagBranch> {
+    val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
+    return obj
+}

@@ -1,15 +1,17 @@
 package com.example.seigenjikan
 
 import android.content.Intent
-import android.content.res.Resources
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
+import android.provider.Settings.Global.putString
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import com.example.seigenjikan.databinding.ActivitySubBinding
+import java.io.File
 import java.util.*
 
 class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.MoveListener,TreasureChestFragment.TreasureChestListener, configFragment.configListener{
@@ -27,6 +29,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
     private lateinit var treasureChestFragment: TreasureChestFragment
     var minute:Long = 0
     var second:Long = 0
+    var testchnge = 0
 
     private var GameFlagBranch = listOf<GameFlagBranch>()
     //呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２ 3＝ダンジョン突入 4＝ダンジョン脱出 5＝方向　6＝宝箱
@@ -52,9 +55,14 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }
         override fun onFinish() {
             binding.timerText.text = "0:00"
-            gameover()
+            if(0 == 0){//ランダムモードの時に別処理
+                gameover()
+            }else if(1 == 1){
+
+            }
+
         }
-    }//ここまでタイマー定義--------------------------------------------------------------------------
+    }
 
     private fun gameover(){//ここから画面遷移--------------------------------------------------------
         val intent = Intent(this, GameOver::class.java)
@@ -63,7 +71,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
     private fun clear(){
         val intent = Intent(this, Clear::class.java)
         startActivity(intent)
-    }//ここまで画面遷移------------------------------------------------------------------------------
+    }
 
     private fun getItem(enemyimage: String, com: ArrayList<Int>, Siz: Int): Pair<Fragment?, Fragment?> {//バトルフラグメントへ値を渡せます（バトルフラグメント用）
         val bundle = Bundle()// Bundle（オブジェクトの入れ物）のインスタンスを作成する
@@ -102,13 +110,34 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         return npc
     }
 
-    private fun treasuregetItem(treasurimage: String ,backimage: String, text: String): Fragment? {//フラグメントへ値を渡せます(オーバーロード:宝箱フラグメント用)
+    private fun treasuregetItem(treasurimage: String ,backimage: String, text: String): Fragment? {//フラグメントへ値を渡せます(宝箱フラグメント用)
         val bundle = Bundle()
-        bundle.putString("KEY_POSITION", treasurimage)//キャラ画像送信用
+        bundle.putString("KEY_POSITION", treasurimage)//宝箱画像送信用
         bundle.putString("KEY_POSITION2", backimage)//背景画像送信用
         bundle.putString("KEY_POSITION3", text)//テキスト送信用
         treasureChestFragment.arguments = bundle
         return treasureChestFragment
+    }
+
+    private fun getItem(SE: Boolean): Fragment? {//フラグメントへ値を渡せます(宝箱フラグメント用)
+        val bundle = Bundle()
+        bundle.putBoolean("KEY_POSITION", SE)//SE設定用送信用
+        config.arguments = bundle
+        return config
+    }
+
+    private fun Randomenemy(): String{ //敵ランダム生成（コマンドのみ）
+        val range = (1..3)
+        val str = "[\n" +
+                "            {\n" +
+                "                \"flag\": 0,\n" +
+                "                \"imageName\": \"suraimu\",\n" +
+                "                \"sikai\": ["+range.random()+","+range.random()+","+range.random()+"],\n" +
+                "                \"back\": \"mori\",\n" +
+                "                \"text\": \"\"\n" +
+                "            }\n" +
+                "        ]"
+    return str
     }
 
     private fun batlefragmentdisplay(){//バトルフラグメント表示メソッド(1,2両用)
@@ -145,7 +174,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
             commit()
         }
         val packageName = packageName //packageName取得
-        val imageId = resources.getIdentifier(GameFlagBranch[FlagY].back, "drawable", packageName) //リソースIDのを取得
+        val imageId = resources.getIdentifier(GameFlagBranch[FlagY].back, "drawable", packageName) //リソースIDを取得
         binding.haikei.setBackgroundResource(imageId) //画像のリソースIDで画像表示
     }
 
@@ -329,6 +358,13 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         timer.start()
     }
 
+    override fun SEconfig(bool:Boolean) {//configフラグメントからSE
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)//config読み込み
+        pref.edit {
+            putBoolean("SE",bool)
+        }
+    }
+
     override fun retire() {//configフラグメントからリタイア
         timer.cancel()
         val intent = Intent(this, MainActivity::class.java)
@@ -339,10 +375,10 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         super.onCreate(savedInstanceState)
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val text = intent.getStringExtra("TEXT_KEY")
         GameFlagBranch = getGameFlagBranch1(resources)//json読み込み
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)//config読み込み
 
-        //ここからタイマーフラグメント、バトルフラグメント表示------------------------------------------
+        //ここからタイマーフラグメント、バトルフラグメント表示
         npc = NPCFragment()
         timerF = TimerFragment()
         batle = BattleFragment()
@@ -354,16 +390,22 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         moveFragment = MoveFragment()
         treasureChestFragment = TreasureChestFragment()
         flagbranch()
-        //ここまでタイマーフラグメント、バトルフラグメント表示-----------------------------------------
-
-        //ここからテストボタン-----------------------------------------------------------------------
+        //タイマー設定
         binding.timerText.text = "3:00"
         timer = MyCountDownTimer((3 * 60) * 1000, 100)
         timer.start()
+
+        //ここからテストボタン
         //binding.testbutton.visibility = View.INVISIBLE;
         binding.testbutton.setOnClickListener {
-            timer.cancel()
-            clear()
+            println(GameFlagBranch)
+            GameFlagBranch = Randomenemychnge(Randomenemy())
+            FlagX = 0
+            FlagY = 0
+            flagbranch()
+            testchnge = 1
+            /*timer.cancel()
+            clear()*/
             /*var a = getGameFlagBranch1(resources)
             Log.d("test", a.size.toString())
             Log.d("test", a[2].flag.toString())
@@ -387,10 +429,8 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 }
             }*/
         }
-        //ここまでテストボタン-----------------------------------------------------------------------
 
-        //ここからボタン判定-------------------------------------------------------------------------
-        fun hanntei(hand: Int){
+        fun hanntei(hand: Int){//ここからボタン判定
             //判定式と正解に１０をかけることで表示が増やせる（例・・・sikai = 10 = hand*10）
             if (GameFlagBranch[FlagY].sikai[FlagX] == hand) {
                 //binding.timerText.text = "正解"
@@ -422,14 +462,35 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 }
                 FlagX = 0
                 timer.cancel()
-                timer = MyCountDownTimer((minute * 60 + second - 10) * 1000, 100)
+                timer = MyCountDownTimer((minute * 60 + second - 9) * 1000, 100)
                 timer.start()
             }
         }
-        //ここまでボタン判定-------------------------------------------------------------------------
 
-        //ここからメニューボタン現在機能未定----------------------------------------------------------
-        binding.titleButton.setOnClickListener{
+        fun hanntei2(hand: Int){
+            //判定式と正解に１０をかけることで表示が増やせる（例・・・sikai = 10 = hand*10）
+            if (GameFlagBranch[FlagY].sikai[FlagX] == hand) {
+                //binding.timerText.text = "正解"
+                    commandviewchangeB1()
+                FlagX++
+                if (FlagX==GameFlagBranch[FlagY].sikai.size){
+                    FlagX = 0
+                    GameFlagBranch = Randomenemychnge(Randomenemy())
+                    flagbranch()
+                }
+            }else {
+                //binding.timerText.text = "不正解"
+                viewanswer = arrayListOf<Int>()
+                commandviewresetB1()
+                FlagX = 0
+                timer.cancel()
+                timer = MyCountDownTimer((minute * 60 + second - 9) * 1000, 100)
+                timer.start()
+            }
+        }
+
+        binding.titleButton.setOnClickListener{//ここからメニューボタン現在機能未定
+            //ボタン無力化
             binding.titleButton.isClickable=false
             binding.RedButton.isClickable = false
             binding.BlueButton.isClickable = false
@@ -438,36 +499,49 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
             timer = MyCountDownTimer((minute * 60 + second) * 1000, 100)
             supportFragmentManager.beginTransaction().apply {
                     config = configFragment()
+                getItem(pref.getBoolean("SE",false))
                     add(R.id.config, config)//バトルフラグメントの上に重ねて表示
                 commit()
             }
         }
-        //ここまでメニューボタン---------------------------------------------------------------------
 
-        lateinit var mp: MediaPlayer
-        //赤ボタン----------------------------------------------------------------------------------
-        binding.RedButton.setOnClickListener{
-            hanntei(1)
-            mp = MediaPlayer.create(this, R.raw.se_magic10);
-            mp.start();
-        }
-        //赤ボタンここまで---------------------------------------------------------------------------
+        lateinit var mp: MediaPlayer//メディア設定
 
-        //青ボタン----------------------------------------------------------------------------------
-        binding.BlueButton.setOnClickListener{
-            hanntei(2)
-            mp = MediaPlayer.create(this, R.raw.bubble_attack1);
-            mp.start();
+        binding.RedButton.setOnClickListener{//赤ボタン
+            if(testchnge == 1){
+                hanntei2(1)
+            }else{
+                hanntei(1)
+            }
+            if(pref.getBoolean("SE",false)){
+                mp = MediaPlayer.create(this, R.raw.se_magic10);
+                mp.start();
+            }
         }
-        //青ボタンここまで---------------------------------------------------------------------------
 
-        //緑ボタン----------------------------------------------------------------------------------
-        binding.GreenButton.setOnClickListener{
-            hanntei(3)
-            mp = MediaPlayer.create(this, R.raw.heavy_punch1);
-            mp.start();
+        binding.BlueButton.setOnClickListener{//青ボタン
+            if(testchnge == 1){
+                hanntei2(2)
+            }else{
+                hanntei(2)
+            }
+            if(pref.getBoolean("SE",false)){
+                mp = MediaPlayer.create(this, R.raw.bubble_attack1);
+                mp.start();
+            }
         }
-        //緑ボタンここまで---------------------------------------------------------------------------
+
+        binding.GreenButton.setOnClickListener{//緑ボタン
+            if(testchnge == 1){
+                hanntei2(3)
+            }else{
+                hanntei(3)
+            }
+            if(pref.getBoolean("SE",false)){
+                mp = MediaPlayer.create(this, R.raw.heavy_punch1);
+                mp.start();
+            }
+        }
     }
 
     override fun onDestroy() {
