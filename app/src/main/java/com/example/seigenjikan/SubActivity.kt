@@ -1,7 +1,9 @@
 package com.example.seigenjikan
 
 import android.content.Intent
+import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.media.SoundPool
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.Settings.Global.putString
@@ -65,10 +67,12 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
     }
 
     private fun gameover(){//ここから画面遷移--------------------------------------------------------
+        BGMstop()
         val intent = Intent(this, GameOver::class.java)
         startActivity(intent)
     }
     private fun clear(){
+        BGMstop()
         val intent = Intent(this, Clear::class.java)
         startActivity(intent)
     }
@@ -398,12 +402,14 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         //ここからテストボタン
         //binding.testbutton.visibility = View.INVISIBLE;
         binding.testbutton.setOnClickListener {
-            println(GameFlagBranch)
+            /*println(GameFlagBranch)
             GameFlagBranch = Randomenemychnge(Randomenemy())
             FlagX = 0
             FlagY = 0
             flagbranch()
-            testchnge = 1
+            testchnge = 1*/
+
+
             /*timer.cancel()
             clear()*/
             /*var a = getGameFlagBranch1(resources)
@@ -505,7 +511,15 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
             }
         }
 
-        lateinit var mp: MediaPlayer//メディア設定
+        lateinit var sp0: SoundPool
+        var snd0=0
+        var snd1=0
+        var snd2=0
+        val aa0= AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build()
+        sp0=SoundPool.Builder().setAudioAttributes(aa0).setMaxStreams(2).build()
+        snd0=sp0.load(this,R.raw.se_magic10,1)
+        snd1=sp0.load(this,R.raw.bubble_attack1,1)
+        snd2=sp0.load(this,R.raw.heavy_punch1,1)
 
         binding.RedButton.setOnClickListener{//赤ボタン
             if(testchnge == 1){
@@ -514,8 +528,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 hanntei(1)
             }
             if(pref.getBoolean("SE",false)){
-                mp = MediaPlayer.create(this, R.raw.se_magic10);
-                mp.start();
+                sp0.play(snd0,1.0f,1.0f,0,0,1.0f)
             }
         }
 
@@ -526,8 +539,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 hanntei(2)
             }
             if(pref.getBoolean("SE",false)){
-                mp = MediaPlayer.create(this, R.raw.bubble_attack1);
-                mp.start();
+                sp0.play(snd1,1.0f,1.0f,0,0,1.0f)
             }
         }
 
@@ -538,10 +550,20 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 hanntei(3)
             }
             if(pref.getBoolean("SE",false)){
-                mp = MediaPlayer.create(this, R.raw.heavy_punch1);
-                mp.start();
+                sp0.play(snd2,1.0f,1.0f,0,0,1.0f)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        timer.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
+        timer = MyCountDownTimer((minute * 60 + second) * 1000, 100)
     }
 
     override fun onDestroy() {

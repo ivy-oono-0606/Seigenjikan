@@ -19,14 +19,37 @@ class MainActivity : AppCompatActivity() {
         mp = MediaPlayer.create(this,R.raw.fabgm);
         mp.setLooping(true);//    ループ設定
         //mp.setVolume(float ,float );
-        mp.start();
+        defBGMstartLoop(this)
 
         binding.startbutton.setOnClickListener{onstartbuttontapped(it)}
+        binding.button.setOnClickListener{
+            mp.stop()
+            BGMstop()
+        }
     }
 
     fun onstartbuttontapped(View: View?){
         val intent = Intent(this, SelectSubActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        BGMRestart()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        BGMpause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //mp.stop()
     }
 
     override fun onBackPressed() {}
