@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".SelectSubActivity">
 
+    <Button
+        android:id="@+id/titleButton2"
+        android:layout_width="111dp"
+        android:layout_height="60dp"
+        android:text="メニュー"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/config"
+        android:layout_width="300dp"
+        android:layout_height="450dp"
+        app:layout_constraintBottom_toBottomOf="@+id/VhImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
         android:id="@+id/MsImageView"
         android:layout_width="233dp"

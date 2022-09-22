@@ -2,18 +2,15 @@ package com.example.seigenjikan
 
 import android.content.Intent
 import android.media.AudioAttributes
-import android.media.MediaPlayer
 import android.media.SoundPool
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.provider.Settings.Global.putString
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.example.seigenjikan.databinding.ActivitySubBinding
-import java.io.File
 import java.util.*
 
 class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.MoveListener,TreasureChestFragment.TreasureChestListener, configFragment.configListener{
@@ -31,7 +28,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
     private lateinit var treasureChestFragment: TreasureChestFragment
     var minute:Long = 0
     var second:Long = 0
-    var testchnge = 0
+    var modechange = 0
 
     private var GameFlagBranch = listOf<GameFlagBranch>()
     //呼び出すフラグメント0＝バトル１、１＝NPC、２＝バトル２ 3＝ダンジョン突入 4＝ダンジョン脱出 5＝方向　6＝宝箱
@@ -123,7 +120,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         return treasureChestFragment
     }
 
-    private fun getItem(SE: Boolean): Fragment? {//フラグメントへ値を渡せます(宝箱フラグメント用)
+    private fun getItem(SE: Boolean): Fragment? {//フラグメントへ値を渡せます(configフラグメント用)
         val bundle = Bundle()
         bundle.putBoolean("KEY_POSITION", SE)//SE設定用送信用
         config.arguments = bundle
@@ -380,7 +377,12 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         super.onCreate(savedInstanceState)
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        GameFlagBranch = getGameFlagBranch1(resources)//json読み込み
+        if(modechange == 0){
+            GameFlagBranch = getGameFlagBranch1(resources)//json読み込み
+        }else{
+
+        }
+
         val pref = PreferenceManager.getDefaultSharedPreferences(this)//config読み込み
 
         //ここからタイマーフラグメント、バトルフラグメント表示
@@ -403,12 +405,12 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         //ここからテストボタン
         //binding.testbutton.visibility = View.INVISIBLE;
         binding.testbutton.setOnClickListener {
-            /*println(GameFlagBranch)
+            println(GameFlagBranch)
             GameFlagBranch = Randomenemychnge(Randomenemy())
             FlagX = 0
             FlagY = 0
             flagbranch()
-            testchnge = 1*/
+            modechange = 1
 
 
             /*timer.cancel()
@@ -475,7 +477,6 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }
 
         fun hanntei2(hand: Int){
-            //判定式と正解に１０をかけることで表示が増やせる（例・・・sikai = 10 = hand*10）
             if (GameFlagBranch[FlagY].sikai[FlagX] == hand) {
                 //binding.timerText.text = "正解"
                     commandviewchangeB1()
@@ -507,11 +508,12 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
             supportFragmentManager.beginTransaction().apply {
                     config = configFragment()
                 getItem(pref.getBoolean("SE",false))
-                    add(R.id.config, config)//バトルフラグメントの上に重ねて表示
+                    add(R.id.config, config)
                 commit()
             }
         }
 
+        //効果音
         lateinit var sp0: SoundPool
         var snd0=0
         var snd1=0
@@ -523,7 +525,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         snd2=sp0.load(this,R.raw.heavy_punch1,1)
 
         binding.RedButton.setOnClickListener{//赤ボタン
-            if(testchnge == 1){
+            if(modechange == 1){
                 hanntei2(1)
             }else{
                 hanntei(1)
@@ -534,7 +536,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }
 
         binding.BlueButton.setOnClickListener{//青ボタン
-            if(testchnge == 1){
+            if(modechange == 1){
                 hanntei2(2)
             }else{
                 hanntei(2)
@@ -545,7 +547,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }
 
         binding.GreenButton.setOnClickListener{//緑ボタン
-            if(testchnge == 1){
+            if(modechange == 1){
                 hanntei2(3)
             }else{
                 hanntei(3)
