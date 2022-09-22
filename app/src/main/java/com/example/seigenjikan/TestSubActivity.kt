@@ -19,7 +19,7 @@ class TestSubActivity : AppCompatActivity() {
         val inflateX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.05f, 0.9f)
         val inflateY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.05f, 0.9f)
         val animator = ObjectAnimator.ofPropertyValuesHolder(binding.TestImageView, inflateX, inflateY).apply {
-            duration = 400
+            duration = 200
             repeatCount = ObjectAnimator.INFINITE
         }
 
@@ -39,6 +39,6 @@ class TestSubActivity : AppCompatActivity() {
     fun loadingDelay(){
         Handler().postDelayed({
             binding.TestImageView.visibility = View.INVISIBLE;
-        }, 1000/2)
+        }, 1000/5)
     }
 }
