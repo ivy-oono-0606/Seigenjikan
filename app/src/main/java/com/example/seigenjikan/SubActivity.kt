@@ -370,6 +370,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
     }
 
     override fun retire() {//configフラグメントからリタイア
+        BGMrelease()
         timer.cancel()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
@@ -558,12 +559,14 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
     override fun onResume() {
         super.onResume()
         timer.start()
+        StoryOVBGMstartLoop(this)
     }
 
     override fun onPause() {
         super.onPause()
         timer.cancel()
         timer = MyCountDownTimer((minute * 60 + second) * 1000, 100)
+        BGMrelease()
     }
 
     override fun onDestroy() {

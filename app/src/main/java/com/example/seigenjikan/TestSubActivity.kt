@@ -1,5 +1,7 @@
 package com.example.seigenjikan
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -14,9 +16,19 @@ class TestSubActivity : AppCompatActivity() {
         binding = ActivityTestSubBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val inflateX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.05f, 0.9f)
+        val inflateY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.05f, 0.9f)
+        val animator = ObjectAnimator.ofPropertyValuesHolder(binding.TestImageView, inflateX, inflateY).apply {
+            duration = 400
+            repeatCount = ObjectAnimator.INFINITE
+        }
+
         binding.TestButton.setOnClickListener{
             binding.TestImageView.visibility = View.VISIBLE;
+            binding.TestImageView.setAlpha(100);
+            animator.start()
             loadingDelay()
+            //animator.pause()
         }
 //        binding.Testbutton2.setOnClickListener{
 //           binding.TestImageView.visibility = View.INVISIBLE;

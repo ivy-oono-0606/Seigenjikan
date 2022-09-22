@@ -35,4 +35,15 @@ class SelectSubActivity : AppCompatActivity() {
 //            startActivity(intent)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        defBGMstartLoop(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        BGMpause()
+    }
+
 }

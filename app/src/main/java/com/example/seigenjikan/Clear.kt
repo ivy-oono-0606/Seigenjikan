@@ -11,6 +11,7 @@ class Clear : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityClearBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CLEBGMstartLoop(this)
 
         binding.TitleButton1.setOnClickListener{ onTitleButtonTapped() }
 

@@ -16,16 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mp = MediaPlayer.create(this,R.raw.fabgm);
-        mp.setLooping(true);//    ループ設定
-        //mp.setVolume(float ,float );
-        defBGMstartLoop(this)
-
         binding.startbutton.setOnClickListener{onstartbuttontapped(it)}
-        binding.button.setOnClickListener{
-            mp.stop()
-            BGMstop()
-        }
     }
 
     fun onstartbuttontapped(View: View?){
@@ -33,23 +24,14 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
     override fun onResume() {
         super.onResume()
-        BGMRestart()
+        defBGMstartLoop(this)
     }
 
     override fun onPause() {
         super.onPause()
-        BGMpause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //mp.stop()
+        BGMrelease()
     }
 
     override fun onBackPressed() {}
