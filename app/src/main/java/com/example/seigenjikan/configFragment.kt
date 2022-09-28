@@ -6,24 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.preference.PreferenceManager
 import com.example.seigenjikan.databinding.FragmentConfigBinding
-import com.example.seigenjikan.databinding.FragmentMoveBinding
 
 class configFragment : Fragment() {
     private var _binding:FragmentConfigBinding? = null
     private val binding get() = _binding!!
-    private var listener:configListener?= null//
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var listener:configListener?= null
 
     interface configListener {//上記と同名で定義
-    fun backconfig()//ここでアクティビティのメソッドに渡します。
-    fun retire()
-    fun SEconfig(bool:Boolean)
+        fun backconfig()//ここでアクティビティのメソッドに渡します。
+        fun retire()
+        fun SEconfig(bool:Boolean)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -33,13 +26,18 @@ class configFragment : Fragment() {
         val bundle = arguments
 
         var SE:Boolean? = true
+        var situation:Int? = 0
 
         // Bundleがセットされていたら値を受け取る
         if (bundle != null) {
             SE = bundle.getBoolean("KEY_POSITION")
+            situation = bundle.getInt("KEY_POSITION2")
             binding.toggleButton.isChecked = SE
         }
 
+        if(situation == 1){
+            binding.retirebutton.visibility = View.INVISIBLE
+        }
 
         binding.retirebutton.setOnClickListener {
             retire(it)
