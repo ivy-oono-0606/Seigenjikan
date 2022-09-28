@@ -1,10 +1,13 @@
 package com.example.seigenjikan
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.content.Intent
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
@@ -123,6 +126,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
     private fun getItem(SE: Boolean): Fragment? {//フラグメントへ値を渡せます(configフラグメント用)
         val bundle = Bundle()
         bundle.putBoolean("KEY_POSITION", SE)//SE設定用送信用
+        bundle.putInt("KEY_POSITION2", 0)//展開アクティビティ送信用
         config.arguments = bundle
         return config
     }
@@ -136,6 +140,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 "                \"sikai\": ["+range.random()+","+range.random()+","+range.random()+"],\n" +
                 "                \"back\": \"mori\",\n" +
                 "                \"text\": \"\"\n" +
+                "                \"Moving\": \"1\"\n" +
                 "            }\n" +
                 "        ]"
     return str
@@ -343,9 +348,9 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         flagbranch()
     }
 
-    override fun onClickNext() {//NPCフラグメントからイベントを受け取れます。
+    override fun onClickNext() {//宝フラグメントからイベントを受け取れます。
         if(GameFlagBranch[FlagY].flag == 6){
-            FlagY += GameFlagBranch[FlagY].sikai[0]
+            FlagY += GameFlagBranch[FlagY].Moving
         }
         timer.start()
         flagbranch()
@@ -377,11 +382,20 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         super.onCreate(savedInstanceState)
         binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(modechange == 0){
-            GameFlagBranch = getGameFlagBranch1(resources)//json読み込み
-        }else{
 
+        modechange = intent.getIntExtra("mode",1)
+
+        if(modechange == 1){
+            GameFlagBranch = getGameFlagBranch1(resources)//json読み込み
+        }else if(modechange == 2){
+
+        }else if(modechange == 3){
+            GameFlagBranch = kounanido(resources)
+        }else if(modechange == 4){
+            GameFlagBranch = kounanido2(resources)
         }
+
+
 
         val pref = PreferenceManager.getDefaultSharedPreferences(this)//config読み込み
 
@@ -410,8 +424,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
             FlagX = 0
             FlagY = 0
             flagbranch()
-            modechange = 1
-
+            modechange = 5
 
             /*timer.cancel()
             clear()*/
@@ -452,7 +465,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 if (FlagX==GameFlagBranch[FlagY].sikai.size){
                     viewanswer = arrayListOf<Int>()
                     FlagX = 0
-                    FlagY++
+                    FlagY += GameFlagBranch[FlagY].Moving
                     if (FlagY >= GameFlagBranch.size){
                         FlagY = 0
                         timer.cancel()
@@ -524,37 +537,72 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         snd1=sp0.load(this,R.raw.bubble_attack1,1)
         snd2=sp0.load(this,R.raw.heavy_punch1,1)
 
+        //エフェクト
+        val inflateX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.05f, 0.9f)
+        val inflateY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.05f, 0.9f)
+        val animator = ObjectAnimator.ofPropertyValuesHolder(binding.attackeffect, inflateX, inflateY).apply {
+            duration = 200
+            repeatCount = ObjectAnimator.INFINITE
+        }
+
+        fun loadingDelay(){
+            Handler().postDelayed({
+                binding.attackeffect.visibility = View.INVISIBLE;
+            }, 1000/5)
+        }
+
         binding.RedButton.setOnClickListener{//赤ボタン
-            if(modechange == 1){
+            if(modechange == 5){
                 hanntei2(1)
             }else{
                 hanntei(1)
             }
+
             if(pref.getBoolean("SE",false)){
                 sp0.play(snd0,1.0f,1.0f,0,0,1.0f)
             }
+
+            binding.attackeffect.setImageResource(R.drawable.redefect)
+            binding.attackeffect.visibility = View.VISIBLE;
+            binding.attackeffect.setAlpha(100);
+            animator.start()
+            loadingDelay()
         }
 
         binding.BlueButton.setOnClickListener{//青ボタン
-            if(modechange == 1){
+            if(modechange == 5){
                 hanntei2(2)
             }else{
                 hanntei(2)
             }
+
             if(pref.getBoolean("SE",false)){
                 sp0.play(snd1,1.0f,1.0f,0,0,1.0f)
             }
+
+            binding.attackeffect.setImageResource(R.drawable.blueefect)
+            binding.attackeffect.visibility = View.VISIBLE;
+            binding.attackeffect.setAlpha(100);
+            animator.start()
+            loadingDelay()
         }
 
         binding.GreenButton.setOnClickListener{//緑ボタン
-            if(modechange == 1){
+            if(modechange == 5){
                 hanntei2(3)
             }else{
                 hanntei(3)
             }
+
             if(pref.getBoolean("SE",false)){
                 sp0.play(snd2,1.0f,1.0f,0,0,1.0f)
             }
+
+            binding.attackeffect.setImageResource(R.drawable.greenefect)
+            binding.attackeffect.visibility = View.VISIBLE;
+            binding.attackeffect.setAlpha(100);
+            animator.start()
+            loadingDelay()
         }
     }
 

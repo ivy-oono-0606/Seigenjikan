@@ -1,114 +1,130 @@
 [
   {
+    "flag": 0,
+    "imageName": "suraimu",
+    "sikai": [1,2,3],
+    "back": "doukutu",
+    "text": "",
+    "Moving": 1
+  },
+  {
     "flag": 5,
     "imageName": "",
     "sikai": [],
     "back": "doukutu",
-    "text": ""
+    "text": "",
+    "Moving": 1
   },
   {
     "flag": 6,
     "imageName": "takarabakogreen",
     "sikai": [3],
     "back": "doukutu",
-    "text": ""
+    "text": "",
+    "Moving": 3
   },
   {
   "flag": 6,
   "imageName": "takarabakored",
   "sikai": [3],
   "back": "doukutu",
-  "text": ""
+  "text": "",
+    "Moving": 3
   },
   {
   "flag": 6,
   "imageName": "takarabakoblue",
   "sikai": [3],
   "back": "doukutu",
-  "text": ""
+  "text": "",
+    "Moving": 3
   },
   {
     "flag": 6,
     "imageName": "takarabakogreenopen",
     "sikai": [6],
     "back": "doukutu",
-    "text": "最深部の蛇は猛毒持ち、自然の力で中和せよ"
+    "text": "最深部の蛇は猛毒持ち、自然の力で中和せよ",
+    "Moving": 7
   },
   {
   "flag": 6,
   "imageName": "takarabakoredopen",
   "sikai": [5],
   "back": "doukutu",
-  "text": "岩を砕く一撃目は水である"
+  "text": "岩を砕く一撃目は水である",
+    "Moving": 6
   },
   {
   "flag": 6,
   "imageName": "takarabakoblueopen",
   "sikai": [4],
   "back": "doukutu",
-  "text": "リザードマンは炎が苦手だ"
+  "text": "リザードマンは炎が苦手だ",
+    "Moving": 4
   },
   {
     "flag": 6,
     "imageName": "takarabakogreenopen",
     "sikai": [],
     "back": "doukutu",
-    "text": "空だった"
+    "text": "空だった",
+    "Moving": 1
   },
   {
   "flag": 6,
   "imageName": "takarabakoredopen",
   "sikai": [],
   "back": "doukutu",
-  "text": "空だった"
+  "text": "空だった",
+    "Moving": 1
   },
   {
   "flag": 6,
   "imageName": "takarabakoblueopen",
   "sikai": [],
   "back": "doukutu",
-  "text": "空だった"
-  },
-  {
-  "flag": 0,
-  "imageName": "suraimu",
-  "sikai": [1,2,3],
-  "back": "doukutu",
-  "text": ""
+  "text": "空だった",
+    "Moving": 1
   },
   {
   "flag": 2,
   "imageName": "rizadoman",
   "sikai": [3,2,1,1,2],
   "back": "doukutu",
-  "text": "緑→青→　→赤→青"
+  "text": "緑→青→　→赤→青",
+    "Moving": 3
   },
   {
   "flag": 2,
   "imageName": "goremu",
-  "sikai": [2,1,1,3,2,3],
+  "sikai": [2,1,1,3,2],
   "back": "doukutu",
-  "text": "　→炎→炎→草→水→草"
+  "text": "　→炎→炎→草→水",
+    "Moving": 2
   },
   {
   "flag": 2,
   "imageName": "bajirisuku",
-  "sikai": [2,3,2,1,3,3,1],
+  "sikai": [2,3,2,3,1],
   "back": "doukutu",
-  "text": "水→　→水→炎→　→草→炎"
+  "text": "水→　→水→　炎",
+    "Moving": 1
   },
   {
   "flag": 2,
   "imageName": "mimikku",
   "sikai": [1,2,3],
   "back": "doukutu",
-  "text": "スライムを倒した時のボタンの順番は？"
+  "text": "スライムを倒した時のボタンの順番は？",
+    "Moving": 1
   },
   {
     "flag": 4,
     "imageName": "",
     "sikai": [],
     "back": "",
-    "text": ""
+    "text": "",
+    "Moving": 1
   }
 ]

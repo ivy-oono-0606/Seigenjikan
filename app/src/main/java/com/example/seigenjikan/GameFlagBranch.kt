@@ -14,7 +14,8 @@ class GameFlagBranch(
     val imageName:String,
     val sikai:ArrayList<Int>,
     val back:String,
-    val text:String
+    val text:String,
+    val Moving:Int
     )
 
 fun getGameFlagBranch1(resources:Resources): List<GameFlagBranch> {
@@ -29,6 +30,24 @@ fun getGameFlagBranch1(resources:Resources): List<GameFlagBranch> {
 fun getdungeon1(resources:Resources): List<GameFlagBranch> {
     val assetManager = resources.assets //アセット呼び出し
     val inputStream = assetManager.open("dungeon1.json")
+    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+    val str: String = bufferedReader.readText() //データ
+    val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
+    return obj
+}
+
+fun kounanido(resources:Resources): List<GameFlagBranch> {
+    val assetManager = resources.assets //アセット呼び出し
+    val inputStream = assetManager.open("kounanido.json")
+    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+    val str: String = bufferedReader.readText() //データ
+    val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
+    return obj
+}
+
+fun kounanido2(resources:Resources): List<GameFlagBranch> {
+    val assetManager = resources.assets //アセット呼び出し
+    val inputStream = assetManager.open("kounanido2.json")
     val bufferedReader = BufferedReader(InputStreamReader(inputStream))
     val str: String = bufferedReader.readText() //データ
     val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
