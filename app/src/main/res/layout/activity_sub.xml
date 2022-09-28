@@ -54,8 +54,8 @@
 
     <ImageView
         android:id="@+id/attackeffect"
-        android:layout_width="153dp"
-        android:layout_height="153dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="128dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/BlueButton"
