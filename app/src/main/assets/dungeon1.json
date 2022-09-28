@@ -45,7 +45,7 @@
     "sikai": [6],
     "back": "doukutu",
     "text": "最深部の蛇は猛毒持ち、自然の力で中和せよ",
-    "Moving": 7
+    "Moving": 8
   },
   {
   "flag": 6,
@@ -108,7 +108,7 @@
   "imageName": "bajirisuku",
   "sikai": [2,3,2,3,1],
   "back": "doukutu",
-  "text": "水→　→水→　炎",
+  "text": "水→　→水→　→炎",
     "Moving": 1
   },
   {
