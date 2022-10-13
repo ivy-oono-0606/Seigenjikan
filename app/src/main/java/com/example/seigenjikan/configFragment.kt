@@ -17,6 +17,7 @@ class configFragment : Fragment() {
         fun backconfig()//ここでアクティビティのメソッドに渡します。
         fun retire()
         fun SEconfig(bool:Boolean)
+        fun AEconfig(bool:Boolean)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -26,13 +27,16 @@ class configFragment : Fragment() {
         val bundle = arguments
 
         var SE:Boolean? = true
+        var AE:Boolean? = true
         var situation:Int? = 0
 
         // Bundleがセットされていたら値を受け取る
         if (bundle != null) {
             SE = bundle.getBoolean("KEY_POSITION")
+            AE = bundle.getBoolean("KEY_POSITION3")
             situation = bundle.getInt("KEY_POSITION2")
             binding.toggleButton.isChecked = SE
+            binding.toggleButton2.isChecked = AE
         }
 
         if(situation == 1){
@@ -56,6 +60,13 @@ class configFragment : Fragment() {
             SEconfig(isChecked)
             println(isChecked.toString())
         }
+
+        binding.toggleButton2.setOnCheckedChangeListener { buttonView, isChecked ->
+            // ON/OFFの状態(isChecked)をToastで表示
+            AEconfig(isChecked)
+            println(isChecked.toString())
+        }
+
         return binding.root
     }
 
@@ -84,5 +95,9 @@ class configFragment : Fragment() {
 
     fun SEconfig(isChecked:Boolean) {
         listener?.SEconfig(isChecked)
+    }
+
+    fun AEconfig(isChecked:Boolean) {
+        listener?.AEconfig(isChecked)
     }
 }

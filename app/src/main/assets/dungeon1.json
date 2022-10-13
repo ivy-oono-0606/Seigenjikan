@@ -18,7 +18,7 @@
   {
     "flag": 6,
     "imageName": "takarabakogreen",
-    "sikai": [3],
+    "sikai": [10,6],
     "back": "doukutu",
     "text": "",
     "Moving": 3
@@ -26,7 +26,7 @@
   {
   "flag": 6,
   "imageName": "takarabakored",
-  "sikai": [3],
+  "sikai": [10,5],
   "back": "doukutu",
   "text": "",
     "Moving": 3
@@ -34,7 +34,7 @@
   {
   "flag": 6,
   "imageName": "takarabakoblue",
-  "sikai": [3],
+  "sikai": [10,4],
   "back": "doukutu",
   "text": "",
     "Moving": 3
@@ -45,7 +45,7 @@
     "sikai": [6],
     "back": "doukutu",
     "text": "最深部の蛇は猛毒持ち、自然の力で中和せよ",
-    "Moving": 8
+    "Moving": 9
   },
   {
   "flag": 6,
@@ -53,7 +53,7 @@
   "sikai": [5],
   "back": "doukutu",
   "text": "岩を砕く一撃目は水である",
-    "Moving": 6
+    "Moving": 7
   },
   {
   "flag": 6,
@@ -61,6 +61,14 @@
   "sikai": [4],
   "back": "doukutu",
   "text": "リザードマンは炎が苦手だ",
+    "Moving": 5
+  },
+  {
+    "flag": 2,
+    "imageName": "mimikku",
+    "sikai": [1,2,3],
+    "back": "doukutu",
+    "text": "スライムを倒した時のボタンの順番は？",
     "Moving": 4
   },
   {
@@ -109,22 +117,6 @@
   "sikai": [2,3,2,3,1],
   "back": "doukutu",
   "text": "水→　→水→　→炎",
-    "Moving": 1
-  },
-  {
-  "flag": 2,
-  "imageName": "mimikku",
-  "sikai": [1,2,3],
-  "back": "doukutu",
-  "text": "スライムを倒した時のボタンの順番は？",
-    "Moving": 1
-  },
-  {
-    "flag": 4,
-    "imageName": "",
-    "sikai": [],
-    "back": "",
-    "text": "",
     "Moving": 1
   }
 ]

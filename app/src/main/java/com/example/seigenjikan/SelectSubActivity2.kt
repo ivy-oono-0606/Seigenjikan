@@ -1,16 +1,15 @@
 package com.example.seigenjikan
 
 import android.content.Intent
-import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
-import com.example.seigenjikan.databinding.ActivitySelectSubBinding
+import com.example.seigenjikan.databinding.ActivitySelectSub2Binding
 
-class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,scoreFragment.scoreListener {
-    private lateinit var binding: ActivitySelectSubBinding
+class SelectSubActivity2 : AppCompatActivity() ,configFragment.configListener,scoreFragment.scoreListener{
+    private lateinit var binding: ActivitySelectSub2Binding
     private lateinit var config: configFragment
     private lateinit var Score: scoreFragment
 
@@ -29,18 +28,17 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
         bundle.putString("KEY_POSITION2", str2)//テキスト２送信用
         bundle.putString("KEY_POSITION3", str3)//テキスト３送信用
         bundle.putString("KEY_POSITION4", str4)//テキスト４送信用
+        bundle.putBoolean("KEY_POSITION5", true)//テキスト４送信用
         Score.arguments = bundle
         return Score
     }
 
     override fun backconfig() {//configフラグメントから戻る受け取り
-        binding.titleButton2.isClickable=true
-        binding.Scorebutton.isClickable=true
-        binding.MsButton.isClickable= true
-        binding.DjButton.isClickable = true
-        binding.DragonButton.isClickable = true
-        binding.DevilButton.isClickable = true
-        binding.chngeimageButton.isClickable = true
+        binding.titleButton4.isClickable=true
+        binding.scorebutton.isClickable=true
+        binding.suraimubutton.isClickable=true
+        binding.randombutton.isClickable=true
+        binding.chngeimageButton2.isClickable=true
     }
 
     override fun SEconfig(bool:Boolean) {//configフラグメントからSE
@@ -67,35 +65,19 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
         var str4:String = ""
         val pref = PreferenceManager.getDefaultSharedPreferences(this)//config読み込み
 
-        if(int == 1){
-            str1 = "ストーリー"
-            if(pref.getBoolean("S1",false)){
+        if (int == 1){
+            str1 = "スライムの森"
+            if(pref.getBoolean("S5",false)){
                 str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S1time",0)/60).toString()+":"+(pref.getLong("S1time",0)%60).toString()
+                str3 = "最大討伐数:"+pref.getInt("S5kill",0).toString()
             }else{
                 str2 = "未クリア"
             }
         }else if (int == 2){
-            str1 = "ダンジョン"
-            if(pref.getBoolean("S2",false)){
+            str1 = "Rダンジョン"
+            if(pref.getBoolean("S6",false)){
                 str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S2time",0)/60).toString()+":"+(pref.getLong("S2time",0)%60).toString()
-            }else{
-                str2 = "未クリア"
-            }
-        }else if (int == 3){
-            str1 = "竜の谷"
-            if(pref.getBoolean("S3",false)){
-                str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S3time",0)/60).toString()+":"+(pref.getLong("S3time",0)%60).toString()
-            }else{
-                str2 = "未クリア"
-            }
-        }else if (int == 4){
-            str1 = "悪魔の住処"
-            if(pref.getBoolean("S4",false)){
-                str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S4time",0)/60).toString()+":"+(pref.getLong("S4time",0)%60).toString()
+                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S6time",0)/60).toString()+":"+(pref.getLong("S6time",0)%60).toString()
             }else{
                 str2 = "未クリア"
             }
@@ -110,53 +92,31 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
 
     fun Buttonoff(){
         //ボタン無力化
-        binding.titleButton2.isClickable=false
-        binding.Scorebutton.isClickable=false
-        binding.MsButton.isClickable=false
-        binding.DjButton.isClickable = false
-        binding.DragonButton.isClickable = false
-        binding.DevilButton.isClickable = false
-        binding.chngeimageButton.isClickable = false
+        binding.titleButton4.isClickable=false
+        binding.scorebutton.isClickable=false
+        binding.suraimubutton.isClickable=false
+        binding.randombutton.isClickable=false
+        binding.chngeimageButton2.isClickable=false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySelectSubBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        binding = ActivitySelectSub2Binding.inflate(layoutInflater)
         val pref = PreferenceManager.getDefaultSharedPreferences(this)//config読み込み
 
-        binding.MsButton.setOnClickListener{
+        binding.suraimubutton.setOnClickListener{
             val intent = Intent(this, SubActivity::class.java)
-            intent.putExtra("mode",1)
+            intent.putExtra("mode",5)
             startActivity(intent)
         }
 
-        binding.DjButton.setOnClickListener{
-//            val intent = Intent(this, TestSubActivity::class.java)
-//            startActivity(intent)
+        binding.randombutton.setOnClickListener{
             val intent = Intent(this, SubActivity::class.java)
-            intent.putExtra("mode",2)
+            intent.putExtra("mode",6)
             startActivity(intent)
         }
 
-        binding.DragonButton.setOnClickListener{
-            /*val intent = Intent(this, TestSubActivity::class.java)
-            startActivity(intent)*/
-            val intent = Intent(this, SubActivity::class.java)
-            intent.putExtra("mode",3)
-            startActivity(intent)
-        }
-
-        binding.DevilButton.setOnClickListener{
-//            val intent = Intent(this, TestSubActivity::class.java)
-//            startActivity(intent)
-            val intent = Intent(this, SubActivity::class.java)
-            intent.putExtra("mode",4)
-            startActivity(intent)
-        }
-
-        binding.titleButton2.setOnClickListener{//ここからメニューボタン
+        binding.titleButton4.setOnClickListener{//ここからメニューボタン
             Buttonoff()
             supportFragmentManager.beginTransaction().apply {
                 config = configFragment()
@@ -166,16 +126,17 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
             }
         }
 
-        binding.Scorebutton.setOnClickListener{//ここからスコアボタン
+        binding.scorebutton.setOnClickListener{//ここからスコアボタン
             Buttonoff()
             textchange(1)
         }
 
-        binding.chngeimageButton.setOnClickListener{//ここからステージセレクト２ボタン
-            val intent = Intent(this, SelectSubActivity2::class.java)
+        binding.chngeimageButton2.setOnClickListener{//ここからステージセレクト２ボタン
+            val intent = Intent(this, SelectSubActivity::class.java)
             startActivity(intent)
         }
 
+        setContentView(binding.root)
     }
 
     override fun onResume() {
@@ -187,5 +148,4 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
         super.onPause()
         BGMpause()
     }
-
 }

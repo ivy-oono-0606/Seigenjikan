@@ -7,17 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MoveFragment">
 
-    <ImageView
-        android:id="@+id/BgImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/doukutu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/LeftImageButton"
         android:layout_width="wrap_content"
@@ -68,6 +57,5 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/GuideImageView"
         app:layout_constraintEnd_toEndOf="@+id/GuideImageView"
-        app:layout_constraintStart_toStartOf="@+id/GuideImageView"
-        app:layout_constraintTop_toTopOf="@+id/BgImageView" />
+        app:layout_constraintStart_toStartOf="@+id/GuideImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Seigenjikan">
-        <activity android:name=".SelectSubActivity"></activity>
-        <activity android:name=".TestSubActivity"></activity>
+        <activity android:name=".SelectSubActivity2"></activity>
+        <activity android:name=".SelectSubActivity" />
+        <activity android:name=".TestSubActivity" />
         <activity android:name=".NpcSubActivity" />
         <activity android:name=".GameOver" />
         <activity android:name=".Clear" />

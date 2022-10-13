@@ -58,3 +58,39 @@ fun Randomenemychnge(str:String): List<GameFlagBranch> {
     val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
     return obj
 }
+
+fun randomdungon(resources:Resources): List<GameFlagBranch> {
+    val assetManager = resources.assets //アセット呼び出し
+    val inputStream = assetManager.open("randomdungon.json")
+    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+    val str: String = bufferedReader.readText() //データ
+    val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
+    return obj
+}
+
+fun random1(resources:Resources): List<GameFlagBranch> {
+    val assetManager = resources.assets //アセット呼び出し
+    val inputStream = assetManager.open("random1.json")
+    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+    val str: String = bufferedReader.readText() //データ
+    val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
+    return obj
+}
+
+fun random2(resources:Resources): List<GameFlagBranch> {
+    val assetManager = resources.assets //アセット呼び出し
+    val inputStream = assetManager.open("random2.json")
+    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+    val str: String = bufferedReader.readText() //データ
+    val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
+    return obj
+}
+
+fun randommimikku(resources:Resources): List<GameFlagBranch> {
+    val assetManager = resources.assets //アセット呼び出し
+    val inputStream = assetManager.open("randommimikku.json")
+    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+    val str: String = bufferedReader.readText() //データ
+    val obj = Json(JsonConfiguration.Stable).parse(GameFlagBranch.serializer().list, str)
+    return obj
+}

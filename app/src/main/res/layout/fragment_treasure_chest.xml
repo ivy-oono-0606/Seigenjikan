@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="宝箱を発見した"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/TguidoImageView"
         app:layout_constraintEnd_toEndOf="@+id/TguidoImageView"
         app:layout_constraintStart_toStartOf="parent"

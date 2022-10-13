@@ -1,0 +1,42 @@
+[
+  {
+  "flag": 0,
+  "imageName": "mimikku",
+  "sikai": [1,2,3,1,2],
+  "back": "dungonaisle",
+  "text": "",
+  "Moving": 1
+  },
+  {
+    "flag": 0,
+    "imageName": "mimikku",
+    "sikai": [2,2,1,1,2],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 1
+  },
+  {
+    "flag": 0,
+    "imageName": "mimikku",
+    "sikai": [1,1,2,1,2],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 1
+  },
+  {
+    "flag": 0,
+    "imageName": "mimikku",
+    "sikai": [3,2,3,3,2],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 1
+  },
+  {
+    "flag": 4,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "",
+    "Moving": 1
+  }
+]

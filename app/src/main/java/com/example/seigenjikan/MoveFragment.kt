@@ -21,8 +21,6 @@ class MoveFragment : Fragment() {
         fun moveright()//ここでアクティビティのメソッドに渡します。
         fun moveleft()//ここでアクティビティのメソッドに渡します。
         fun moveforward()//ここでアクティビティのメソッドに渡します。
-//        fun onClickNext()//ここでアクティビティのメソッドに渡します。
-//        fun onClickNext()//ここでアクティビティのメソッドに渡します。
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -4,69 +4,71 @@
     "imageName": "waiban",
     "sikai": [2,1,2,1,2],
     "back": "ryuunotani",
-    "text": "濡れて、燃やして、蒸発し、温められ、雨となる"
+    "text": "濡れて、燃やして、蒸発し、温められ、雨となる",
+    "Moving": 1
   },
   {
     "flag": 2,
     "imageName": "doragon",
     "sikai": [3,1,1,2,2],
     "back": "ryuunotani",
-    "text": "木が燃え、森が燃え、天井曇らせ、生はない"
+    "text": "木が燃え、森が燃え、天井曇らせ、生はない",
+    "Moving": 1
   },
   {
     "flag": 2,
     "imageName": "nidhogg",
     "sikai": [3,3,3,1,1],
     "back": "ryuunotani",
-    "text": "地に眠り時を待つ、時来れば怒りをもってすべて壊す"
+    "text": "地に眠り時を待つ、時来れば怒りをもってすべて壊す",
+    "Moving": 1
   },
   {
     "flag": 2,
-    "imageName": "fahuniru",
-    "sikai": [1,1,1,1,1],
-    "back": "",
-    "text": "それの呪いが体を蝕み殺す、焼き殺せ呪いが目覚めぬように"
-  },
-  {
-    "flag": 2,
-    "imageName": "ajida",
-    "sikai": [3,1,2,2,2],
-    "back": "",
-    "text": "自然の力に苦痛を感じ、未来に苦悩し、暗い底で死を待つ"
-  },
-  {
-    "flag": 2,
-    "imageName": "yamatanooroti",
-    "sikai": [2,3,3,2,1],
-    "back": "",
-    "text": "湖より出でて、地を削り、死すらも残さず"
-  },
-  {
-    "flag": 2,
-    "imageName": "rivaiasan",
-    "sikai": [2,2,2,2,2],
-    "back": "",
-    "text": "渦を巻き、大海が荒ぶり、すべてを飲み込む"
-  },
-  {
-    "flag": 2,
-    "imageName": "urovorosu",
-    "sikai": [2,3,1,2,3],
-    "back": "",
-    "text": "永遠の輪廻の中巡り巡って恵となす"
-  },
-  {
-    "flag": 2,
-    "imageName": "bahamuto",
-    "sikai": [3,3,1,2,1],
-    "back": "",
-    "text": "地は揺れ、木々は焼け、海が枯れ、日は消え、闇となり、命消える"
-  },
-  {
-    "flag": 4,
     "imageName": "",
-    "sikai": [],
-    "back": "",
-    "text": ""
+    "sikai": [1,1,1,1,1],
+    "back": "fahuniru",
+    "text": "それの呪いが体を蝕み殺す、焼き殺せ呪いが目覚めぬように",
+    "Moving": 1
+  },
+  {
+    "flag": 2,
+    "imageName": "",
+    "sikai": [3,1,2,2,2],
+    "back": "ajida",
+    "text": "自然の力に苦痛を感じ、未来に苦悩し、暗い底で死を待つ",
+    "Moving": 1
+  },
+  {
+    "flag": 2,
+    "imageName": "",
+    "sikai": [2,3,3,2,1],
+    "back": "yamatanooroti",
+    "text": "湖より出でて、地を削り、死すらも残さず",
+    "Moving": 1
+  },
+  {
+    "flag": 2,
+    "imageName": "",
+    "sikai": [2,2,2,2,2],
+    "back": "rivaiasan",
+    "text": "渦を巻き、大海が荒ぶり、すべてを飲み込む",
+    "Moving": 1
+  },
+  {
+    "flag": 2,
+    "imageName": "",
+    "sikai": [2,3,1,2,3],
+    "back": "urovorosu",
+    "text": "永遠の輪廻の中巡り巡って恵となす",
+    "Moving": 1
+  },
+  {
+    "flag": 2,
+    "imageName": "",
+    "sikai": [3,3,1,2,1],
+    "back": "bahamuto",
+    "text": "地は揺れ、木々は焼け、海が枯れ、日は消え、闇となり、命消える",
+    "Moving": 1
   }
 ]

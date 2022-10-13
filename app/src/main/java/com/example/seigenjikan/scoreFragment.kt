@@ -27,6 +27,7 @@ class scoreFragment : Fragment() {
         var str2:String? = ""
         var str3:String? = ""
         var str4:String? = ""
+        var mode:Boolean = false
 
         // Bundleがセットされていたら値を受け取る
         if (bundle != null) {
@@ -34,6 +35,14 @@ class scoreFragment : Fragment() {
             str2 = bundle.getString("KEY_POSITION2")
             str3 = bundle.getString("KEY_POSITION3")
             str4 = bundle.getString("KEY_POSITION4")
+            mode = bundle.getBoolean("KEY_POSITION5")
+        }
+
+        if(mode){
+            binding.scorebutton1.text = "スライムの森"
+            binding.scorebutton2.text = "Rダンジョン"
+            binding.scorebutton3.visibility = View.INVISIBLE;
+            binding.scorebutton4.visibility = View.INVISIBLE;
         }
 
         binding.scoretext1.text = str1

@@ -11,7 +11,6 @@ class GameOver : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGameOverBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        GMOVBGMstartLoop(this)
 
         binding.TitleButton2.setOnClickListener{ onTitleButtonTapped() }
 
@@ -22,5 +21,14 @@ class GameOver : AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onResume() {
+        super.onResume()
+        GMOVBGMstartLoop(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        BGMrelease()
+    }
     override fun onBackPressed() {}
 }

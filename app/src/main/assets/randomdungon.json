@@ -1,0 +1,402 @@
+[
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 5,
+    "imageName": "",
+    "sikai": [],
+    "back": "dungoncrossroads",
+    "text": "",
+    "Moving": 1
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakogreen",
+    "sikai": [10,6],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 3
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakored",
+    "sikai": [0],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 3
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakoblue",
+    "sikai": [10,4],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 3
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakogreenopen",
+    "sikai": [0],
+    "back": "dungonaisle",
+    "text": "宝箱は空っぽだ…",
+    "Moving": 4
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakoredopen",
+    "sikai": [1,31],
+    "back": "dungonaisle",
+    "text": "魔法の砂時計を見つけた！！\n制限時間が少し増えた！",
+    "Moving": 3
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakoblueopen",
+    "sikai": [0],
+    "back": "dungonaisle",
+    "text": "転移トラップだ！！\n少し戻されてしまった！",
+    "Moving": -9
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "randommimikku",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random1",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 5,
+    "imageName": "",
+    "sikai": [],
+    "back": "dungoncrossroads",
+    "text": "",
+    "Moving": 1
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakogreen",
+    "sikai": [10,6],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 3
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakored",
+    "sikai": [0],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 3
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakoblue",
+    "sikai": [10,4],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 3
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakogreenopen",
+    "sikai": [0],
+    "back": "dungonaisle",
+    "text": "転移トラップだ！！\nかなり戻されてしまった！",
+    "Moving": -14
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakoredopen",
+    "sikai": [2,20],
+    "back": "dungonaisle",
+    "text": "猛毒のトラップだ",
+    "Moving": 3
+  },
+  {
+    "flag": 6,
+    "imageName": "takarabakoblueopen",
+    "sikai": [1,51],
+    "back": "dungonaisle",
+    "text": "魔法の懐中時計を見つけた！！\n制限時間が増えた！",
+    "Moving": 2
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "randommimikku",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 3,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "random2",
+    "Moving": 1
+  },
+  {
+    "flag": 7,
+    "imageName": "",
+    "sikai": [],
+    "back": "",
+    "text": "",
+    "Moving": 1
+  }
+]

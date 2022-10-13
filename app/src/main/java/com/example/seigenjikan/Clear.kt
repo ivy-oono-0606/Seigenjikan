@@ -11,10 +11,8 @@ class Clear : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityClearBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        CLEBGMstartLoop(this)
 
         binding.TitleButton1.setOnClickListener{ onTitleButtonTapped() }
-
     }
 
     fun onTitleButtonTapped() {
@@ -22,5 +20,14 @@ class Clear : AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onResume() {
+        super.onResume()
+        CLEBGMstartLoop(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        BGMrelease()
+    }
     override fun onBackPressed() {}
 }
