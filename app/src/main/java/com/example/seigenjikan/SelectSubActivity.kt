@@ -71,7 +71,7 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
             str1 = "ストーリー"
             if(pref.getBoolean("S1",false)){
                 str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S1time",0)/60).toString()+":"+(pref.getLong("S1time",0)%60).toString()
+                str3 = "最速クリアタイム\n残りタイム:"+"%1d:%2$02d".format(pref.getLong("S1time",0)/60,(pref.getLong("S1time",0)%60))
             }else{
                 str2 = "未クリア"
             }
@@ -79,7 +79,7 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
             str1 = "ダンジョン"
             if(pref.getBoolean("S2",false)){
                 str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S2time",0)/60).toString()+":"+(pref.getLong("S2time",0)%60).toString()
+                str3 = "最速クリアタイム\n残りタイム:"+"%1d:%2$02d".format(pref.getLong("S2time",0)/60,(pref.getLong("S2time",0)%60))
             }else{
                 str2 = "未クリア"
             }
@@ -87,7 +87,7 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
             str1 = "竜の谷"
             if(pref.getBoolean("S3",false)){
                 str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S3time",0)/60).toString()+":"+(pref.getLong("S3time",0)%60).toString()
+                str3 = "最速クリアタイム\n残りタイム:"+"%1d:%2$02d".format(pref.getLong("S3time",0)/60,(pref.getLong("S3time",0)%60))
             }else{
                 str2 = "未クリア"
             }
@@ -95,7 +95,7 @@ class SelectSubActivity : AppCompatActivity() ,configFragment.configListener,sco
             str1 = "悪魔の住処"
             if(pref.getBoolean("S4",false)){
                 str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S4time",0)/60).toString()+":"+(pref.getLong("S4time",0)%60).toString()
+                str3 = "最速クリアタイム\n残りタイム:"+"%1d:%2$02d".format(pref.getLong("S4time",0)/60,(pref.getLong("S4time",0)%60))
             }else{
                 str2 = "未クリア"
             }

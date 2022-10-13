@@ -21,7 +21,23 @@
     "sikai": [1,2,3,1,2],
     "back": "dungonaisle",
     "text": "",
-    "Moving": 8
+    "Moving": 9
+  },
+  {
+    "flag": 0,
+    "imageName": "bajirisuku",
+    "sikai": [2,3,2,3,1],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 1
+  },
+  {
+    "flag": 0,
+    "imageName": "bajirisuku",
+    "sikai": [3,3,3,1,2],
+    "back": "dungonaisle",
+    "text": "",
+    "Moving": 7
   },
   {
     "flag": 0,
@@ -29,7 +45,7 @@
     "sikai": [3,2,1],
     "back": "dungonaisle",
     "text": "",
-    "Moving": 7
+    "Moving": 6
   },
   {
     "flag": 0,
@@ -37,7 +53,7 @@
     "sikai": [3,3,2,1],
     "back": "dungonaisle",
     "text": "",
-    "Moving": 6
+    "Moving": 5
   },
   {
     "flag": 0,
@@ -45,7 +61,7 @@
     "sikai": [3,2,1,1,2],
     "back": "dungonaisle",
     "text": "",
-    "Moving": 1
+    "Moving": 4
   },
   {
     "flag": 0,
@@ -53,7 +69,7 @@
     "sikai": [3,2,2,1,1],
     "back": "dungonaisle",
     "text": "",
-    "Moving": 4
+    "Moving": 3
   },
   {
     "flag": 0,
@@ -61,20 +77,12 @@
     "sikai": [2,1,1,3,2],
     "back": "dungonaisle",
     "text": "",
-    "Moving": 1
+    "Moving": 2
   },
   {
     "flag": 0,
     "imageName": "goremu",
     "sikai": [1,1,3,3,2],
-    "back": "dungonaisle",
-    "text": "",
-    "Moving": 2
-  },
-  {
-    "flag": 0,
-    "imageName": "bajirisuku",
-    "sikai": [2,3,2,3,1],
     "back": "dungonaisle",
     "text": "",
     "Moving": 1

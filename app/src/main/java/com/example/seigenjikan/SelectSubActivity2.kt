@@ -77,7 +77,7 @@ class SelectSubActivity2 : AppCompatActivity() ,configFragment.configListener,sc
             str1 = "Rダンジョン"
             if(pref.getBoolean("S6",false)){
                 str2 = "クリア済み"
-                str3 = "最速クリアタイム\n残りタイム:"+(pref.getLong("S6time",0)/60).toString()+":"+(pref.getLong("S6time",0)%60).toString()
+                str3 = "最速クリアタイム\n残りタイム:"+"%1d:%2$02d".format(pref.getLong("S6time",0)/60,(pref.getLong("S6time",0)%60))
             }else{
                 str2 = "未クリア"
             }

@@ -270,7 +270,7 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
                 FlagY = range.random()
                 GameFlagBranch = random1(resources)
             }else if("random2" == GameFlagBranch[FlagY].text){
-                val range = (0..6)
+                val range = (0..10)
                 FlagY = range.random()
                 GameFlagBranch = random2(resources)
             }else if("randommimikku" == GameFlagBranch[FlagY].text){
