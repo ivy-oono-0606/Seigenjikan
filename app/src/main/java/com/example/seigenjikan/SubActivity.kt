@@ -539,9 +539,9 @@ class SubActivity : AppCompatActivity(),NPCFragment.NPCListener ,MoveFragment.Mo
         }else if(modechange == 2){
             GameFlagBranch = getdungeon1(resources)
         }else if(modechange == 3){
-            GameFlagBranch = kounanido(resources)
-        }else if(modechange == 4){
             GameFlagBranch = kounanido2(resources)
+        }else if(modechange == 4){
+            GameFlagBranch = kounanido(resources)
         }else if(modechange == 5){
             GameFlagBranch = Randomenemychnge(Randomenemy())
         }else if(modechange == 6){
